@@ -15,6 +15,9 @@ public class LightSettingsPlayer : MonoBehaviour
     private bool NightVisionActive = false;
     private bool FlashlightActive = false;
 
+    public static bool InventoryOn = false;
+
+
 
     void Start()
     {
@@ -35,9 +38,13 @@ public class LightSettingsPlayer : MonoBehaviour
                     NightVisionActive = true;
                     SaveScript.NVLightOn = true;
                 }
+                 
                 else
                 {
-                     
+                    MyVolume.profile = Standard;
+                    NightVisionOverlay.gameObject.SetActive(false);
+                    NightVisionActive = false;
+                    SaveScript.NVLightOn = false;
                 }
 
             }
@@ -51,12 +58,12 @@ public class LightSettingsPlayer : MonoBehaviour
                     SaveScript.FlashLightOn = true;
 
                 }
-                else
-                {
+          
+            else
+            {
                     FlashlightObject.gameObject.SetActive(false);
                     FlashlightActive = false;
                     SaveScript.FlashLightOn = false;
-
                 }
 
             }
@@ -74,5 +81,17 @@ public class LightSettingsPlayer : MonoBehaviour
             SaveScript.FlashLightOn = false;
         }
         
+        if (InventoryOn == true)
+        {
+            MyVolume.profile = Standard;
+            NightVisionOverlay.gameObject.SetActive(false);
+            NightVisionActive = false;
+            SaveScript.NVLightOn = false;
+
+            FlashlightObject.gameObject.SetActive(false);
+            FlashlightActive = false;
+            SaveScript.FlashLightOn = false;
+        }
+
     }//Update()
 }
