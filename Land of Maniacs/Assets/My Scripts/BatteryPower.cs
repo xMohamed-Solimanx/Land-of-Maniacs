@@ -10,10 +10,19 @@ public class BatteryPower : MonoBehaviour
     [SerializeField] float DrainTime = 15.0f;
     [SerializeField] float Power;
    
+   // void Start()
+   // {
+      //  BatteryUI.fillAmount = 0f;
+   // }
 
     // Update is called once per frame
     void Update()
     {
+        if(SaveScript.BatteryRefill == true) //used when player clicks on a battery in the inventory
+        {
+            SaveScript.BatteryRefill = false;
+            BatteryUI.fillAmount = 1.0f;
+        }
         if (SaveScript.FlashLightOn == true || SaveScript.NVLightOn == true)
         {
             BatteryUI.fillAmount -= 1.0f / DrainTime * Time.deltaTime;
