@@ -15,9 +15,15 @@ public class PickupsScript : MonoBehaviour
     [SerializeField] GameObject PickupBaseballBatMSG;
     [SerializeField] GameObject PickupHandgunMSG;
     [SerializeField] GameObject PickupCrossbowMSG;
+    [SerializeField] GameObject PickupCrossbowAmmoMSG;
+    [SerializeField] GameObject PickupHandgunAmmoMSG;
+    [SerializeField] GameObject PickupCabinKeyMSG;
+    [SerializeField] GameObject PickupHouseKeyMSG;
+    [SerializeField] GameObject PickupRoomKeyMSG;
     [SerializeField] GameObject BatteriesFullMSG;
     [SerializeField] GameObject ApplesFullMSG;
     [SerializeField] GameObject HasWeaponMSG;
+    [SerializeField] GameObject AmmoFullMSG;
 
     private AudioSource MyPlayer;
 
@@ -29,10 +35,19 @@ public class PickupsScript : MonoBehaviour
     private bool CanSeeBaseballBat = false;
     private bool CanSeeHandgun = false;
     private bool CanSeeCrossbow = false;
+    private bool CanSeeCrossbowAmmo = false;
+    private bool CanSeeHandgunAmmo = false;
+    private bool CanSeeCabinKey = false;
+    private bool CanSeeHouseKey = false;
+    private bool CanSeeRoomKey = false;
+
+
 
     private bool BatteriesFull = false;
     private bool ApplesFull = false;
     private bool HasWeapon = false;
+    private bool AmmoFull = false;
+
 
 
 
@@ -50,6 +65,13 @@ public class PickupsScript : MonoBehaviour
         PickupBaseballBatMSG.gameObject.SetActive(false);
         PickupHandgunMSG.gameObject.SetActive(false);
         BatteriesFullMSG.gameObject.SetActive(false);
+        AmmoFullMSG.gameObject.SetActive(false);
+        PickupCabinKeyMSG.gameObject.SetActive(false);
+        PickupHouseKeyMSG.gameObject.SetActive(false);
+        PickupRoomKeyMSG.gameObject.SetActive(false);
+
+
+
         RayDistance = Distance;
     }
     // Update is called once per frame
@@ -177,6 +199,79 @@ public class PickupsScript : MonoBehaviour
                     }
                 }
             }
+            else if (hit.transform.tag == "CrossbowAmmo")
+            {
+                CanSeeCrossbowAmmo = true;
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (SaveScript.CrossbowAmmo == 1)
+                    {
+                        AmmoFull = true;
+                    }
+                    else
+                    {
+                        Destroy(hit.transform.gameObject);
+                        SaveScript.CrossbowAmmo = 1;
+                        MyPlayer.Play();
+                    }
+                }
+            }
+            else if (hit.transform.tag == "HandgunAmmo")
+            {
+                CanSeeHandgunAmmo = true;
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (SaveScript.HandgunAmmo == 4)
+                    {
+                        AmmoFull = true;
+                    }
+                    else
+                    {
+                        Destroy(hit.transform.gameObject);
+                        SaveScript.HandgunAmmo += 1;
+                        MyPlayer.Play();
+                    }
+                }
+            }
+            else if (hit.transform.tag == "CabinKey")
+            {
+                CanSeeCabinKey = true;
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (SaveScript.CabinKey == false)
+                    {
+                        Destroy(hit.transform.gameObject);
+                        SaveScript.CabinKey = true;
+                        MyPlayer.Play();
+                    }
+                }
+            }
+            else if (hit.transform.tag == "HouseKey")
+            {
+                CanSeeHouseKey = true;
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (SaveScript.HouseKey == false)
+                    {
+                        Destroy(hit.transform.gameObject);
+                        SaveScript.HouseKey = true;
+                        MyPlayer.Play();
+                    }
+                }
+            }
+            else if (hit.transform.tag == "RoomKey")
+            {
+                CanSeeRoomKey = true;
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (SaveScript.RoomKey == false)
+                    {
+                        Destroy(hit.transform.gameObject);
+                        SaveScript.RoomKey = true;
+                        MyPlayer.Play();
+                    }
+                }
+            }
             else
             {
                 CanSeePickup = false;
@@ -185,7 +280,13 @@ public class PickupsScript : MonoBehaviour
                 CanSeeBaseballBat = false;
                 CanSeeHandgun = false;
                 CanSeeCrossbow = false;
-}
+                CanSeeCrossbowAmmo = false;
+                CanSeeHandgunAmmo = false;
+                CanSeeCabinKey = false;
+                CanSeeHouseKey = false;
+                CanSeeRoomKey = false;
+
+            }
         }
 
         if (CanSeePickup == true)
@@ -197,7 +298,6 @@ public class PickupsScript : MonoBehaviour
         {
             PickupMSG.gameObject.SetActive(false);
             RayDistance = Distance;
-
         }
 
         if (CanSeeAxe == true)
@@ -209,7 +309,6 @@ public class PickupsScript : MonoBehaviour
         {
             PickupAxeMSG.gameObject.SetActive(false);
             RayDistance = Distance;
-
         }
 
         if (CanSeeKnife == true)
@@ -221,7 +320,6 @@ public class PickupsScript : MonoBehaviour
         {
             PickupKnifeMSG.gameObject.SetActive(false);
             RayDistance = Distance;
-
         }
 
         if (CanSeeBaseballBat == true)
@@ -233,7 +331,6 @@ public class PickupsScript : MonoBehaviour
         {
             PickupBaseballBatMSG.gameObject.SetActive(false);
             RayDistance = Distance;
-
         }
         if (CanSeeHandgun == true)
         {
@@ -244,7 +341,6 @@ public class PickupsScript : MonoBehaviour
         {
             PickupHandgunMSG.gameObject.SetActive(false);
             RayDistance = Distance;
-
         }
 
         if (CanSeeCrossbow == true)
@@ -256,8 +352,64 @@ public class PickupsScript : MonoBehaviour
         {
             PickupCrossbowMSG.gameObject.SetActive(false);
             RayDistance = Distance;
-
         }
+
+        if (CanSeeCrossbowAmmo == true)
+        {
+            PickupCrossbowAmmoMSG.gameObject.SetActive(true);
+            RayDistance = 10000f;
+        }
+        if (CanSeeCrossbowAmmo == false)
+        {
+            PickupCrossbowAmmoMSG.gameObject.SetActive(false);
+            RayDistance = Distance;
+        }
+
+        if (CanSeeHandgunAmmo == true)
+        {
+            PickupHandgunAmmoMSG.gameObject.SetActive(true);
+            RayDistance = 10000f;
+        }
+        if (CanSeeHandgunAmmo == false)
+        {
+            PickupHandgunAmmoMSG.gameObject.SetActive(false);
+            RayDistance = Distance;
+        }
+
+        if (CanSeeCabinKey == true)
+        {
+            PickupCabinKeyMSG.gameObject.SetActive(true);
+            RayDistance = 10000f;
+        }
+        if (CanSeeCabinKey == false)
+        {
+            PickupCabinKeyMSG.gameObject.SetActive(false);
+            RayDistance = Distance;
+        }
+
+        if (CanSeeHouseKey == true)
+        {
+            PickupHouseKeyMSG.gameObject.SetActive(true);
+            RayDistance = 10000f;
+        }
+        if (CanSeeHouseKey == false)
+        {
+            PickupHouseKeyMSG.gameObject.SetActive(false);
+            RayDistance = Distance;
+        }
+
+        if (CanSeeRoomKey == true)
+        {
+            PickupRoomKeyMSG.gameObject.SetActive(true);
+            RayDistance = 10000f;
+        }
+        if (CanSeeRoomKey == false)
+        {
+            PickupRoomKeyMSG.gameObject.SetActive(false);
+            RayDistance = Distance;
+        }
+
+
 
         if (BatteriesFull == true)
         {
@@ -279,9 +431,22 @@ public class PickupsScript : MonoBehaviour
             PickupMSG.gameObject.SetActive(false);
             StartCoroutine(WeaponReset());
         }
+        if (AmmoFull == true)
+        {
+            AmmoFullMSG.gameObject.SetActive(true);
+            PickupMSG.gameObject.SetActive(false);
+            StartCoroutine(AmmoReset());
+        }
 
     }
 
+    IEnumerator AmmoReset()
+    {
+        yield return new WaitForSeconds(2);
+        AmmoFullMSG.gameObject.SetActive(false);
+        AmmoFull = false;
+
+    }
     IEnumerator WeaponReset()
     {
         yield return new WaitForSeconds(2);

@@ -47,6 +47,48 @@ public class InventoryScript : MonoBehaviour
     [SerializeField] GameObject BatteryImage4;
     [SerializeField] GameObject BatteryButton4;
 
+    // Weapons
+
+    [SerializeField] GameObject KnifeImage;
+    [SerializeField] GameObject KnifeButton;
+
+    [SerializeField] GameObject BatImage;
+    [SerializeField] GameObject BatButton;
+
+    [SerializeField] GameObject AxeImage;
+    [SerializeField] GameObject AxeButton;
+
+    [SerializeField] GameObject HandgunImage;
+    [SerializeField] GameObject HandgunButton;
+
+    [SerializeField] GameObject CrossbowImage;
+    [SerializeField] GameObject CrossbowButton;
+
+    // Ammo
+
+    [SerializeField] GameObject HandgunAmmoImage1;
+    [SerializeField] GameObject HandgunAmmoButton1;
+
+    [SerializeField] GameObject HandgunAmmoImage2;
+    [SerializeField] GameObject HandgunAmmoButton2;
+
+    [SerializeField] GameObject HandgunAmmoImage3;
+    [SerializeField] GameObject HandgunAmmoButton3;
+
+    [SerializeField] GameObject HandgunAmmoImage4;
+    [SerializeField] GameObject HandgunAmmoButton4;
+
+    [SerializeField] GameObject CrossbowAmmoImage;
+    [SerializeField] GameObject CrossbowAmmoButton;
+
+    // Keys
+
+    [SerializeField] GameObject CabinKeyImage;
+
+    [SerializeField] GameObject HouseKeyImage;
+
+    [SerializeField] GameObject RoomKeyImage;
+
 
 
     // Start is called before the first frame update
@@ -82,6 +124,32 @@ public class InventoryScript : MonoBehaviour
         BatteryImage4.gameObject.SetActive(false);
         BatteryButton4.gameObject.SetActive(false);
 
+        // Weapons
+
+        KnifeImage.gameObject.SetActive(false);
+        KnifeButton.gameObject.SetActive(false);
+        BatImage.gameObject.SetActive(false);
+        BatButton.gameObject.SetActive(false);
+        AxeImage.gameObject.SetActive(false);
+        AxeButton.gameObject.SetActive(false);
+        HandgunImage.gameObject.SetActive(false);
+        HandgunButton.gameObject.SetActive(false);
+        CrossbowImage.gameObject.SetActive(false);
+        CrossbowButton.gameObject.SetActive(false);
+
+        // Ammo
+
+        HandgunAmmoImage1.gameObject.SetActive(false);
+        HandgunAmmoButton1.gameObject.SetActive(false);
+        HandgunAmmoImage2.gameObject.SetActive(false);
+        HandgunAmmoButton2.gameObject.SetActive(false);
+        HandgunAmmoImage3.gameObject.SetActive(false);
+        HandgunAmmoButton3.gameObject.SetActive(false);
+        HandgunAmmoImage4.gameObject.SetActive(false);
+        HandgunAmmoButton4.gameObject.SetActive(false);
+        CrossbowAmmoImage.gameObject.SetActive(false);
+        CrossbowAmmoButton.gameObject.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -109,6 +177,9 @@ public class InventoryScript : MonoBehaviour
         }
 
         CheckInventory();
+        CheckWeapons();
+        CheckAmmo();
+        CheckKeys();
     }
 
     void CheckInventory()
@@ -280,6 +351,144 @@ public class InventoryScript : MonoBehaviour
         } 
     }
 
+    void CheckWeapons()
+    {
+        if (SaveScript.Knife)
+        {
+            KnifeImage.gameObject.SetActive(true);
+            KnifeButton.gameObject.SetActive(true);
+        }
+        if (SaveScript.BaseballBat)
+        {
+            BatImage.gameObject.SetActive(true);
+            BatButton.gameObject.SetActive(true);
+        }
+        if (SaveScript.Axe)
+        {
+            AxeImage.gameObject.SetActive(true);
+            AxeButton.gameObject.SetActive(true);
+        }
+        if (SaveScript.Handgun)
+        {
+            HandgunImage.gameObject.SetActive(true);
+            HandgunButton.gameObject.SetActive(true);
+        }
+        if (SaveScript.Crossbow)
+        {
+            CrossbowImage.gameObject.SetActive(true);
+            CrossbowButton.gameObject.SetActive(true);
+        }
+
+    }
+
+    void CheckAmmo()
+    {
+        if (SaveScript.HandgunAmmo == 0)
+        {
+            HandgunAmmoImage1.gameObject.SetActive(false);
+            HandgunAmmoButton1.gameObject.SetActive(false);
+            HandgunAmmoImage2.gameObject.SetActive(false);
+            HandgunAmmoButton2.gameObject.SetActive(false);
+            HandgunAmmoImage3.gameObject.SetActive(false);
+            HandgunAmmoButton3.gameObject.SetActive(false);
+            HandgunAmmoImage4.gameObject.SetActive(false);
+            HandgunAmmoButton4.gameObject.SetActive(false);
+        }
+        if (SaveScript.HandgunAmmo == 1)
+        {
+            HandgunAmmoImage1.gameObject.SetActive(true);
+            HandgunAmmoButton1.gameObject.SetActive(true);
+            HandgunAmmoImage2.gameObject.SetActive(false);
+            HandgunAmmoButton2.gameObject.SetActive(false);
+            HandgunAmmoImage3.gameObject.SetActive(false);
+            HandgunAmmoButton3.gameObject.SetActive(false);
+            HandgunAmmoImage4.gameObject.SetActive(false);
+            HandgunAmmoButton4.gameObject.SetActive(false);
+        }
+        if (SaveScript.HandgunAmmo == 2)
+        {
+            HandgunAmmoImage1.gameObject.SetActive(true);
+            HandgunAmmoButton1.gameObject.SetActive(false);
+            HandgunAmmoImage2.gameObject.SetActive(true);
+            HandgunAmmoButton2.gameObject.SetActive(true);
+            HandgunAmmoImage3.gameObject.SetActive(false);
+            HandgunAmmoButton3.gameObject.SetActive(false);
+            HandgunAmmoImage4.gameObject.SetActive(false);
+            HandgunAmmoButton4.gameObject.SetActive(false);
+        }
+        if (SaveScript.HandgunAmmo == 3)
+        {
+            HandgunAmmoImage1.gameObject.SetActive(true);
+            HandgunAmmoButton1.gameObject.SetActive(false);
+            HandgunAmmoImage2.gameObject.SetActive(true);
+            HandgunAmmoButton2.gameObject.SetActive(false);
+            HandgunAmmoImage3.gameObject.SetActive(true);
+            HandgunAmmoButton3.gameObject.SetActive(true);
+            HandgunAmmoImage4.gameObject.SetActive(false);
+            HandgunAmmoButton4.gameObject.SetActive(false);
+        }
+        if (SaveScript.HandgunAmmo == 4)
+        {
+            HandgunAmmoImage1.gameObject.SetActive(true);
+            HandgunAmmoButton1.gameObject.SetActive(false);
+            HandgunAmmoImage2.gameObject.SetActive(true);
+            HandgunAmmoButton2.gameObject.SetActive(false);
+            HandgunAmmoImage3.gameObject.SetActive(true);
+            HandgunAmmoButton3.gameObject.SetActive(false);
+            HandgunAmmoImage4.gameObject.SetActive(true);
+            HandgunAmmoButton4.gameObject.SetActive(true);
+        }
+
+        if (SaveScript.CrossbowAmmo == 0)
+        {
+            CrossbowAmmoImage.gameObject.SetActive(false);
+            CrossbowAmmoButton.gameObject.SetActive(false);
+            
+        }
+
+        if (SaveScript.CrossbowAmmo == 1)
+        {
+            CrossbowAmmoImage.gameObject.SetActive(true);
+            CrossbowAmmoButton.gameObject.SetActive(true);
+            
+        }
+    }
+
+    void CheckKeys()
+    {
+        if (!SaveScript.CabinKey)
+        {
+            CabinKeyImage.gameObject.SetActive(false);
+
+        }
+
+        if (SaveScript.CabinKey)
+        {
+            CabinKeyImage.gameObject.SetActive(true);
+        }
+
+        if (!SaveScript.HouseKey)
+        {
+            HouseKeyImage.gameObject.SetActive(false);
+
+        }
+
+        if (SaveScript.HouseKey)
+        {
+            HouseKeyImage.gameObject.SetActive(true);
+        }
+
+        if (!SaveScript.RoomKey)
+        {
+            RoomKeyImage.gameObject.SetActive(false);
+
+        }
+
+        if (SaveScript.RoomKey)
+        {
+            RoomKeyImage.gameObject.SetActive(true);
+        }
+    }
     void HealthUpdate() //used when player clicks on a Apple in the inventory
     {
         if (SaveScript.PlayerHealth == 100)

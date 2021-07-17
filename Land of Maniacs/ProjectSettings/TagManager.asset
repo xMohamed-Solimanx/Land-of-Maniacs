@@ -11,6 +11,11 @@ TagManager:
   - Axe
   - Knife
   - BaseballBat
+  - CabinKey
+  - HouseKey
+  - RoomKey
+  - CrossbowAmmo
+  - HandgunAmmo
   layers:
   - Default
   - TransparentFX
