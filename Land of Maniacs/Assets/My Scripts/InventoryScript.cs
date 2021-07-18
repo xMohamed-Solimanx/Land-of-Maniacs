@@ -8,9 +8,25 @@ public class InventoryScript : MonoBehaviour
    
     [SerializeField] GameObject InventoryPanel;
     [SerializeField] GameObject HealthFullMSG;
+
+    [SerializeField] GameObject PlayerArms;
+    [SerializeField] GameObject Knife;
+    [SerializeField] GameObject BaseballBat;
+    [SerializeField] GameObject Axe;
+    [SerializeField] GameObject Handgun;
+    [SerializeField] GameObject Crossbow;
+
+    [SerializeField] Animator Anim;
+
+
+
     private AudioSource MyPlayer;
     [SerializeField] AudioClip AppleBite;
     [SerializeField] AudioClip BatteryPickup;
+    [SerializeField] AudioClip WeaponChange;
+    [SerializeField] AudioClip ArrowShot;
+    [SerializeField] AudioClip GunShot;
+
     public static bool InventoryActive = false;
     //public static float delay = 2f;
 
@@ -99,6 +115,7 @@ public class InventoryScript : MonoBehaviour
         InventoryPanel.gameObject.SetActive(false);
         InventoryActive = false;
         Cursor.visible = false;
+
 
         // Apples
         AppleImage1.gameObject.SetActive(false);
@@ -532,6 +549,94 @@ public class InventoryScript : MonoBehaviour
         SaveScript.Batteries -= 1;
        // BatteryPower.BatteryUI.fillAmount = 1f;
 
+    }
+
+    public void ShowKnife()
+    {
+        PlayerArms.gameObject.SetActive(true);
+        Knife.gameObject.SetActive(true);
+
+        BaseballBat.gameObject.SetActive(false);    // Disabling other weapons when selecting a weapon to avoid overlapping
+        Axe.gameObject.SetActive(false);
+        Handgun.gameObject.SetActive(false);
+        Crossbow.gameObject.SetActive(false);
+
+        Anim.SetBool("Melee", true);    //Changing animation of idle stance when chaning weapons from inventory.
+        Anim.SetBool("Crossbow", false);
+        Anim.SetBool("Gun", false);
+
+        MyPlayer.clip = WeaponChange;
+        MyPlayer.Play();
+    }
+    public void ShowBaseballBat()
+    {
+        PlayerArms.gameObject.SetActive(true);
+        BaseballBat.gameObject.SetActive(true);
+
+        Knife.gameObject.SetActive(false);
+        Axe.gameObject.SetActive(false);
+        Handgun.gameObject.SetActive(false);
+        Crossbow.gameObject.SetActive(false);
+
+        Anim.SetBool("Melee", true);
+        Anim.SetBool("Crossbow", false);
+        Anim.SetBool("Gun", false);
+
+        MyPlayer.clip = WeaponChange;
+        MyPlayer.Play();
+    }
+    public void ShowAxe()
+    {
+        PlayerArms.gameObject.SetActive(true);
+        Axe.gameObject.SetActive(true);
+
+        Knife.gameObject.SetActive(false);
+        BaseballBat.gameObject.SetActive(false);
+        Handgun.gameObject.SetActive(false);
+        Crossbow.gameObject.SetActive(false);
+
+        Anim.SetBool("Melee", true);
+        Anim.SetBool("Crossbow", false);
+        Anim.SetBool("Gun", false);
+
+        MyPlayer.clip = WeaponChange;
+        MyPlayer.Play();
+    }
+
+    public void ShowHandgun()
+    {
+        PlayerArms.gameObject.SetActive(true);
+        Handgun.gameObject.SetActive(true);
+
+        Knife.gameObject.SetActive(false);
+        BaseballBat.gameObject.SetActive(false);
+        Crossbow.gameObject.SetActive(false);
+        Axe.gameObject.SetActive(false);
+
+        Anim.SetBool("Melee", false);
+        Anim.SetBool("Crossbow", false);
+        Anim.SetBool("Gun", true);
+        MyPlayer.clip = GunShot;
+
+        MyPlayer.Play();
+    }
+    public void ShowCrossbow()
+    {
+        PlayerArms.gameObject.SetActive(true);
+        Crossbow.gameObject.SetActive(true);
+
+        Handgun.gameObject.SetActive(false);
+        Knife.gameObject.SetActive(false);
+        BaseballBat.gameObject.SetActive(false);
+        Axe.gameObject.SetActive(false);
+
+
+        Anim.SetBool("Melee", false);
+        Anim.SetBool("Gun", false);
+        Anim.SetBool("Crossbow", true);
+
+        MyPlayer.clip = ArrowShot;
+        MyPlayer.Play();
     }
 
 }

@@ -25,6 +25,13 @@ public class PickupsScript : MonoBehaviour
     [SerializeField] GameObject HasWeaponMSG;
     [SerializeField] GameObject AmmoFullMSG;
 
+    [SerializeField] GameObject PlayerArms;
+    [SerializeField] GameObject Knife;
+    [SerializeField] GameObject BaseballBat;
+    [SerializeField] GameObject Axe;
+
+
+
     private AudioSource MyPlayer;
 
     private float RayDistance;
@@ -70,6 +77,7 @@ public class PickupsScript : MonoBehaviour
         PickupHouseKeyMSG.gameObject.SetActive(false);
         PickupRoomKeyMSG.gameObject.SetActive(false);
 
+        PlayerArms.gameObject.SetActive(false);  // Player Arms are not shown on start, but only when it carrys a weapon.
 
 
         RayDistance = Distance;
@@ -77,6 +85,11 @@ public class PickupsScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            WeaponsOff();
+        }
+
         if (Physics.Raycast(transform.position, transform.forward, out hit, RayDistance))
         {
             if (hit.transform.tag == "Apple")
@@ -471,4 +484,12 @@ public class PickupsScript : MonoBehaviour
 
     }
 
+    void WeaponsOff()
+    {
+        PlayerArms.gameObject.SetActive(false);
+        BaseballBat.gameObject.SetActive(false);
+        Knife.gameObject.SetActive(false);
+        Axe.gameObject.SetActive(false);
+
+    }
 }
