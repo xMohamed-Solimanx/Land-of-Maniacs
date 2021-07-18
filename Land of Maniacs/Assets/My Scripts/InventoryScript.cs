@@ -16,10 +16,11 @@ public class InventoryScript : MonoBehaviour
     [SerializeField] GameObject Handgun;
     [SerializeField] GameObject Crossbow;
 
+
     [SerializeField] Animator Anim;
 
 
-
+    
     private AudioSource MyPlayer;
     [SerializeField] AudioClip AppleBite;
     [SerializeField] AudioClip BatteryPickup;
@@ -27,7 +28,7 @@ public class InventoryScript : MonoBehaviour
     [SerializeField] AudioClip ArrowShot;
     [SerializeField] AudioClip GunShot;
 
-    public static bool InventoryActive = false;
+    //public static bool InventoryActive = false;
     //public static float delay = 2f;
 
     // Apples
@@ -113,7 +114,7 @@ public class InventoryScript : MonoBehaviour
         MyPlayer = GetComponent<AudioSource>(); //Get audio source attached to this object
 
         InventoryPanel.gameObject.SetActive(false);
-        InventoryActive = false;
+        SaveScript.InventoryActive = false;
         Cursor.visible = false;
 
 
@@ -174,21 +175,24 @@ public class InventoryScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            if (InventoryActive == false)
+            if (SaveScript.InventoryActive == false)
             {
                 InventoryPanel.gameObject.SetActive(true);
                 LightSettingsPlayer.InventoryOn = true;
-                InventoryActive = true;
+                SaveScript.InventoryActive = true;
                 Time.timeScale = 0f;
                 Cursor.visible = true;
+                // I need to disable the camera rotation here
             }
             else
             {
                 InventoryPanel.gameObject.SetActive(false);
                 LightSettingsPlayer.InventoryOn = false;
-                InventoryActive = false;
+                SaveScript.InventoryActive = false;
                 Time.timeScale = 1f;
                 Cursor.visible = false;
+                // I need to enable the camera rotation here
+
             }
 
         }
@@ -560,6 +564,7 @@ public class InventoryScript : MonoBehaviour
         Axe.gameObject.SetActive(false);
         Handgun.gameObject.SetActive(false);
         Crossbow.gameObject.SetActive(false);
+        Time.timeScale = 1f;
 
         Anim.SetBool("Melee", true);    //Changing animation of idle stance when chaning weapons from inventory.
         Anim.SetBool("Crossbow", false);
@@ -577,6 +582,7 @@ public class InventoryScript : MonoBehaviour
         Axe.gameObject.SetActive(false);
         Handgun.gameObject.SetActive(false);
         Crossbow.gameObject.SetActive(false);
+        Time.timeScale = 1f;
 
         Anim.SetBool("Melee", true);
         Anim.SetBool("Crossbow", false);
@@ -594,6 +600,7 @@ public class InventoryScript : MonoBehaviour
         BaseballBat.gameObject.SetActive(false);
         Handgun.gameObject.SetActive(false);
         Crossbow.gameObject.SetActive(false);
+        Time.timeScale = 1f;
 
         Anim.SetBool("Melee", true);
         Anim.SetBool("Crossbow", false);
@@ -612,6 +619,7 @@ public class InventoryScript : MonoBehaviour
         BaseballBat.gameObject.SetActive(false);
         Crossbow.gameObject.SetActive(false);
         Axe.gameObject.SetActive(false);
+        Time.timeScale = 1f;
 
         Anim.SetBool("Melee", false);
         Anim.SetBool("Crossbow", false);
@@ -629,6 +637,7 @@ public class InventoryScript : MonoBehaviour
         Knife.gameObject.SetActive(false);
         BaseballBat.gameObject.SetActive(false);
         Axe.gameObject.SetActive(false);
+        Time.timeScale = 1f;
 
 
         Anim.SetBool("Melee", false);
