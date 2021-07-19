@@ -9,19 +9,32 @@ public class EnemyMove : MonoBehaviour
     private Transform TheTarget;
     private float DistanceToTarget;
     private int TargetNumber = 1;
+    private bool HasStopped = false;
 
+
+
+    private Animator Anim;
 
     [SerializeField] Transform Target1;
     [SerializeField] Transform Target2;
+    [SerializeField] Transform Target3;
+    [SerializeField] Transform Target4;
+    [SerializeField] Transform Target5;
+    [SerializeField] Transform Target6;
+    [SerializeField] Transform Target7;
+    [SerializeField] Transform Target8;
+    [SerializeField] Transform Target9;
+
     [SerializeField] float StopDistance = 2.0f;
 
-
+    private bool forward = true;
 
     // Start is called before the first frame update
     void Start()
     {
         Nav = GetComponent<NavMeshAgent>();
         TheTarget = Target1;
+        Anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -32,16 +45,54 @@ public class EnemyMove : MonoBehaviour
         if(DistanceToTarget > StopDistance)
         {
             Nav.SetDestination(TheTarget.position);
+            Nav.isStopped = false;
+            Anim.SetInteger("State", 0);
         }
 
-        if (DistanceToTarget < StopDistance)
+        if (DistanceToTarget < StopDistance && forward)
         {
-            TargetNumber++;
-            if (TargetNumber > 2)
+
+            if (TargetNumber > 8)
             {
-                TargetNumber = 1;
+                Nav.isStopped = true;
+                Anim.SetInteger("State", 1);
+                StartCoroutine(LookAround());
             }
-            SetTarget();
+
+            else
+            {
+                TargetNumber++;
+                if (TargetNumber > 9)
+                {
+
+                    forward = false;
+                    TargetNumber = 8;
+                }
+                SetTarget();
+            }
+  
+        }
+        else if (DistanceToTarget < StopDistance && !forward)
+        {
+            if (TargetNumber < 2)
+            {
+                Nav.isStopped = true;
+                Anim.SetInteger("State", 1);
+                StartCoroutine(LookAround2());
+            }
+            else
+            {
+                TargetNumber--;
+                if (TargetNumber < 1)
+                {
+                    forward = true;
+                    TargetNumber = 2;
+                }
+                SetTarget();
+            }
+
+
+
         }
     }
 
@@ -56,6 +107,71 @@ public class EnemyMove : MonoBehaviour
         {
             TheTarget = Target2;
         }
+        if (TargetNumber == 3)
+        {
+            TheTarget = Target3;
+        }
+        if (TargetNumber == 4)
+        {
+            TheTarget = Target4;
+        }
+        if (TargetNumber == 5)
+        {
+            TheTarget = Target5;
+        }
+        if (TargetNumber == 6)
+        {
+            TheTarget = Target6;
+        }
+        if (TargetNumber == 7)
+        {
+            TheTarget = Target7;
+        }
+        if (TargetNumber == 8)
+        {
+            TheTarget = Target8;
+        }
+        if (TargetNumber == 9)
+        {
+            TheTarget = Target9;
+        }
+    }
+    
+
+    IEnumerator LookAround()
+    {
+        yield return new WaitForSeconds(2.0f);
+
+        if (HasStopped == false)
+        {
+            HasStopped = true;
+            TargetNumber++;
+            if (TargetNumber > 9)
+            {
+                forward = false;
+                TargetNumber = 8;
+            }
+            SetTarget();
+            yield return new WaitForSeconds(2.0f);
+            HasStopped = false;
+        }
     }
 
+    IEnumerator LookAround2()
+    {
+        yield return new WaitForSeconds(2.0f);
+        if (HasStopped == false)
+        {
+            HasStopped = true;
+            TargetNumber--;
+            if (TargetNumber < 1)
+            {
+                forward = true;
+                TargetNumber = 2;
+            }
+            SetTarget();
+            yield return new WaitForSeconds(2.0f);
+            HasStopped = false;
+        }
+    }
 }

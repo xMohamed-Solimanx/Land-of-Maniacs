@@ -84,6 +84,7 @@ public class LightSettingsPlayer : MonoBehaviour
 
             FlashlightObject.gameObject.SetActive(false);
             EnemyFlashlight.gameObject.SetActive(false);
+
             FlashlightActive = false;
             SaveScript.FlashLightOn = false;
         }
