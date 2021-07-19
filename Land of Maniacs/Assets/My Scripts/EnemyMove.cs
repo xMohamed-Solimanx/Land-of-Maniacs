@@ -8,6 +8,7 @@ public class EnemyMove : MonoBehaviour
     private NavMeshAgent Nav;
     private Transform TheTarget;
     private float DistanceToTarget;
+
     private int TargetNumber = 1;
     private bool HasStopped = false;
 
@@ -25,6 +26,8 @@ public class EnemyMove : MonoBehaviour
     [SerializeField] Transform Target8;
     [SerializeField] Transform Target9;
 
+    [SerializeField] float WaitTime = 2.0f;
+   // [SerializeField] int MaxTargets;
     [SerializeField] float StopDistance = 2.0f;
 
     private bool forward = true;
@@ -140,7 +143,7 @@ public class EnemyMove : MonoBehaviour
 
     IEnumerator LookAround()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(WaitTime);
 
         if (HasStopped == false)
         {
@@ -152,14 +155,14 @@ public class EnemyMove : MonoBehaviour
                 TargetNumber = 8;
             }
             SetTarget();
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(WaitTime);
             HasStopped = false;
         }
     }
 
     IEnumerator LookAround2()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(WaitTime);
         if (HasStopped == false)
         {
             HasStopped = true;
@@ -170,7 +173,7 @@ public class EnemyMove : MonoBehaviour
                 TargetNumber = 2;
             }
             SetTarget();
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(WaitTime);
             HasStopped = false;
         }
     }
