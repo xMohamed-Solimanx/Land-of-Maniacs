@@ -11,6 +11,8 @@ public class LightSettingsPlayer : MonoBehaviour
     [SerializeField] PostProcessProfile NightVision;
     [SerializeField] GameObject NightVisionOverlay;
     [SerializeField] GameObject FlashlightObject;
+    [SerializeField] GameObject EnemyFlashlight;
+
 
     private bool NightVisionActive = false;
     private bool FlashlightActive = false;
@@ -22,6 +24,7 @@ public class LightSettingsPlayer : MonoBehaviour
     void Start()
     {
         FlashlightObject.gameObject.SetActive(false);
+        EnemyFlashlight.gameObject.SetActive(false);
         NightVisionOverlay.gameObject.SetActive(false);
     }
 
@@ -54,6 +57,8 @@ public class LightSettingsPlayer : MonoBehaviour
                 if (FlashlightActive == false)
                 {
                     FlashlightObject.gameObject.SetActive(true);
+                    EnemyFlashlight.gameObject.SetActive(true);
+
                     FlashlightActive = true;
                     SaveScript.FlashLightOn = true;
 
@@ -62,6 +67,7 @@ public class LightSettingsPlayer : MonoBehaviour
             else
             {
                     FlashlightObject.gameObject.SetActive(false);
+                    EnemyFlashlight.gameObject.SetActive(false);
                     FlashlightActive = false;
                     SaveScript.FlashLightOn = false;
                 }
@@ -77,6 +83,7 @@ public class LightSettingsPlayer : MonoBehaviour
             SaveScript.NVLightOn = false;
 
             FlashlightObject.gameObject.SetActive(false);
+            EnemyFlashlight.gameObject.SetActive(false);
             FlashlightActive = false;
             SaveScript.FlashLightOn = false;
         }
@@ -89,6 +96,7 @@ public class LightSettingsPlayer : MonoBehaviour
             SaveScript.NVLightOn = false;
 
             FlashlightObject.gameObject.SetActive(false);
+            EnemyFlashlight.gameObject.SetActive(false);
             FlashlightActive = false;
             SaveScript.FlashLightOn = false;
         }
