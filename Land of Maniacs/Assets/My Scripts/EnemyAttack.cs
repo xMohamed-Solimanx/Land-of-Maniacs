@@ -28,13 +28,6 @@ public class EnemyAttack : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -53,12 +46,12 @@ public class EnemyAttack : MonoBehaviour
 
                 Blocked = NavMesh.Raycast(transform.position, Player.position, out hit, NavMesh.AllAreas);
 
-                if (Blocked == false)
+                if (Blocked == false) // can see the player
                 {
                     Debug.Log("I can see the player");
                     RunToPlayer = true;
                 }
-                if (Blocked == true)
+                if (Blocked == true) // can't see the player
                 {
                     Debug.Log("Where did the player go?!");
                     RunToPlayer = false;
@@ -76,7 +69,7 @@ public class EnemyAttack : MonoBehaviour
             Enemy.GetComponent<EnemyMove>().enabled = false;
             if (DistanceToPlayer > AttackDistance)
             {
-                Nav.isStopped = false;
+                Nav.isStopped = false;          //start moving
                 Anim.SetInteger("State", 2);
                 Nav.acceleration = 24;
                 Nav.SetDestination(Player.position);
@@ -84,7 +77,7 @@ public class EnemyAttack : MonoBehaviour
             }
             if (DistanceToPlayer < AttackDistance)
             {
-                Nav.isStopped = true;
+                Nav.isStopped = true;           //stop moving
                 Debug.Log("I am attacking");
                // Anim.SetInteger("State", 2);
                 Nav.acceleration = 180;         //The higher the acceleration, the enemy won't slide when stopping'

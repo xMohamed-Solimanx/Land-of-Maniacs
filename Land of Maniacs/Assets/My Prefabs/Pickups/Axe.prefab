@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3335241010122737206}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.6327792, y: -0.00015857258, z: 0.7743307, w: -0.0016034247}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9090495014691021800}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.13, y: -78.511, z: 180.131}
 --- !u!33 &7661672178225434314
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 8056179728106537706}
   - component: {fileID: 4463216683429393112}
   m_Layer: 0
-  m_Name: Axe (2)
+  m_Name: Axe
   m_TagString: Axe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

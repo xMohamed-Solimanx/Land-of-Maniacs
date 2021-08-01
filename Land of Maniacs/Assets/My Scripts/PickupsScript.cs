@@ -20,10 +20,12 @@ public class PickupsScript : MonoBehaviour
     [SerializeField] GameObject PickupCabinKeyMSG;
     [SerializeField] GameObject PickupHouseKeyMSG;
     [SerializeField] GameObject PickupRoomKeyMSG;
+
     [SerializeField] GameObject BatteriesFullMSG;
     [SerializeField] GameObject ApplesFullMSG;
-    [SerializeField] GameObject HasWeaponMSG;
     [SerializeField] GameObject AmmoFullMSG;
+
+    [SerializeField] GameObject HasWeaponMSG;
 
     [SerializeField] GameObject PlayerArms;
     [SerializeField] GameObject Knife;
