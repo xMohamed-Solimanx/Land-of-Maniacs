@@ -20,6 +20,8 @@ public class PickupsScript : MonoBehaviour
     [SerializeField] GameObject PickupCabinKeyMSG;
     [SerializeField] GameObject PickupHouseKeyMSG;
     [SerializeField] GameObject PickupRoomKeyMSG;
+    [SerializeField] GameObject DoorMSG;
+
 
     [SerializeField] GameObject BatteriesFullMSG;
     [SerializeField] GameObject ApplesFullMSG;
@@ -49,6 +51,7 @@ public class PickupsScript : MonoBehaviour
     private bool CanSeeCabinKey = false;
     private bool CanSeeHouseKey = false;
     private bool CanSeeRoomKey = false;
+    private bool CanSeeDoor = false;
 
 
 
@@ -78,6 +81,7 @@ public class PickupsScript : MonoBehaviour
         PickupCabinKeyMSG.gameObject.SetActive(false);
         PickupHouseKeyMSG.gameObject.SetActive(false);
         PickupRoomKeyMSG.gameObject.SetActive(false);
+        DoorMSG.gameObject.SetActive(false);
 
         PlayerArms.gameObject.SetActive(false);  // Player Arms are not shown on start, but only when it carrys a weapon.
 
@@ -287,6 +291,14 @@ public class PickupsScript : MonoBehaviour
                     }
                 }
             }
+            else if (hit.transform.tag == "Door")
+            {
+                CanSeeDoor = true;
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    hit.transform.gameObject.SendMessage("DoorOpen");
+                }
+            }
             else
             {
                 CanSeePickup = false;
@@ -300,6 +312,8 @@ public class PickupsScript : MonoBehaviour
                 CanSeeCabinKey = false;
                 CanSeeHouseKey = false;
                 CanSeeRoomKey = false;
+                CanSeeDoor = false;
+
 
             }
         }
@@ -421,6 +435,16 @@ public class PickupsScript : MonoBehaviour
         if (CanSeeRoomKey == false)
         {
             PickupRoomKeyMSG.gameObject.SetActive(false);
+            RayDistance = Distance;
+        }
+        if (CanSeeDoor == true)
+        {
+            DoorMSG.gameObject.SetActive(true);
+            RayDistance = 10000f;
+        }
+        if (CanSeeDoor == false)
+        {
+            DoorMSG.gameObject.SetActive(false);
             RayDistance = Distance;
         }
 

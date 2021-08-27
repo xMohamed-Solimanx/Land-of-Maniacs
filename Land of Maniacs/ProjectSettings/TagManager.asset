@@ -16,6 +16,7 @@ TagManager:
   - RoomKey
   - CrossbowAmmo
   - HandgunAmmo
+  - Door
   layers:
   - Default
   - TransparentFX
