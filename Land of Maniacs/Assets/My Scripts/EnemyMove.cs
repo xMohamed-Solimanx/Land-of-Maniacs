@@ -55,7 +55,7 @@ public class EnemyMove : MonoBehaviour
         if (DistanceToTarget < StopDistance && forward)
         {
 
-            if (TargetNumber > 8)
+            if (TargetNumber > 8)   //if going to first cube (target) then stop and change animation
             {
                 Nav.isStopped = true;
                 Anim.SetInteger("State", 1);
@@ -65,7 +65,7 @@ public class EnemyMove : MonoBehaviour
             else
             {
                 TargetNumber++;
-                if (TargetNumber > 9)
+                if (TargetNumber > 9)   //if arrived at first cube then switch direction
                 {
 
                     forward = false;
