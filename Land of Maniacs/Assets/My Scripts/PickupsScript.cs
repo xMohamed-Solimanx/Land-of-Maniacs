@@ -21,6 +21,7 @@ public class PickupsScript : MonoBehaviour
     [SerializeField] GameObject PickupHouseKeyMSG;
     [SerializeField] GameObject PickupRoomKeyMSG;
     [SerializeField] GameObject DoorMSG;
+    [SerializeField] Text DoorText;
 
 
     [SerializeField] GameObject BatteriesFullMSG;
@@ -294,6 +295,14 @@ public class PickupsScript : MonoBehaviour
             else if (hit.transform.tag == "Door")
             {
                 CanSeeDoor = true;
+                if (hit.transform.gameObject.GetComponent<DoorScript>().IsOpen == false)
+                {
+                    DoorText.text = "Press E to Open";
+                }
+                if (hit.transform.gameObject.GetComponent<DoorScript>().IsOpen == true)
+                {
+                    DoorText.text = "Press E to Close";
+                }
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     hit.transform.gameObject.SendMessage("DoorOpen");
