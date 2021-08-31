@@ -101,4 +101,19 @@ public class DoorScript : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            if (Locked == false)
+            {
+                if (IsOpen == false)
+                {
+                    Anim.SetTrigger("Open");
+                    IsOpen = true;
+                }
+            }
+        }
+    }
 }
