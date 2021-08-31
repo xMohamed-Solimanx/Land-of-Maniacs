@@ -50,12 +50,14 @@ public class EnemyAttack : MonoBehaviour
                 {
                     Debug.Log("I can see the player");
                     RunToPlayer = true;
+                    FailedChecks = 0;
                 }
                 if (Blocked == true) // can't see the player
                 {
                     Debug.Log("Where did the player go?!");
                     RunToPlayer = false;
                     Anim.SetInteger("State", 1);
+                    FailedChecks++;
                 }
 
                 StartCoroutine(TimedCheck());
@@ -90,10 +92,26 @@ public class EnemyAttack : MonoBehaviour
 
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            RunToPlayer = true;
+        }
+    }
+
     IEnumerator TimedCheck()
     {
         yield return new WaitForSeconds(CheckTime);
         IsChecking = true;
+
+        if (FailedChecks > MaxChecks)
+        {
+            Enemy.GetComponent<EnemyMove>().enabled = true;
+            Nav.isStopped = false;
+            Nav.speed = WalkSpeed;
+            FailedChecks = 0;
+        }
     }
 
 
