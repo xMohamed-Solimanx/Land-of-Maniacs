@@ -27,6 +27,7 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] float CheckTime = 3.0f;
 
     [SerializeField] GameObject ChaseMusic;
+    [SerializeField] GameObject HurtUI;
 
 
 
@@ -80,6 +81,8 @@ public class EnemyAttack : MonoBehaviour
                 Nav.acceleration = 24;
                 Nav.SetDestination(Player.position);
                 Nav.speed = ChaseSpeed;
+                HurtUI.gameObject.SetActive(false);
+
             }
             if (DistanceToPlayer < AttackDistance - 0.5f)
             {
@@ -87,6 +90,7 @@ public class EnemyAttack : MonoBehaviour
                 Debug.Log("I am attacking");
                 Anim.SetInteger("State", 3);
                 Nav.acceleration = 180;         //The higher the acceleration, the enemy won't slide when stopping'
+                HurtUI.gameObject.SetActive(true);
 
                 Vector3 Pos = (Player.position - Enemy.transform.position).normalized;  //handling enemy rotation when attacking the player to make him face the player
                 Quaternion PosRotation = Quaternion.LookRotation(new Vector3(Pos.x, 0, Pos.z));
