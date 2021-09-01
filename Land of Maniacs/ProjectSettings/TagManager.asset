@@ -17,6 +17,7 @@ TagManager:
   - CrossbowAmmo
   - HandgunAmmo
   - Door
+  - Enemy
   layers:
   - Default
   - TransparentFX
