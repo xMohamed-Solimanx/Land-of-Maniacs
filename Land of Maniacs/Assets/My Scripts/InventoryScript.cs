@@ -183,6 +183,9 @@ public class InventoryScript : MonoBehaviour
                 Time.timeScale = 0f;
                 Cursor.visible = true;
                 // I need to disable the camera rotation here
+                SaveScript.HaveKnife = false;   //to avoid the registration of the weapon animation while in the inventory
+                SaveScript.HaveBat = false;
+                SaveScript.HaveAxe = false;
             }
             else
             {
@@ -572,6 +575,10 @@ public class InventoryScript : MonoBehaviour
 
         MyPlayer.clip = WeaponChange;
         MyPlayer.Play();
+        SaveScript.HaveKnife = true;
+        SaveScript.HaveBat = false;
+        SaveScript.HaveAxe = false;
+
     }
     public void ShowBaseballBat()
     {
@@ -590,6 +597,10 @@ public class InventoryScript : MonoBehaviour
 
         MyPlayer.clip = WeaponChange;
         MyPlayer.Play();
+
+        SaveScript.HaveKnife = false;
+        SaveScript.HaveBat = true;
+        SaveScript.HaveAxe = false;
     }
     public void ShowAxe()
     {
@@ -608,6 +619,9 @@ public class InventoryScript : MonoBehaviour
 
         MyPlayer.clip = WeaponChange;
         MyPlayer.Play();
+        SaveScript.HaveKnife = false;
+        SaveScript.HaveBat = false;
+        SaveScript.HaveAxe = true;
     }
 
     public void ShowHandgun()
