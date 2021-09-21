@@ -19,6 +19,10 @@ TagManager:
   - Door
   - Enemy
   - PlayerKnife
+  - PlayerAxe
+  - PlayerBat
+  - PlayerGun
+  - PlayerCrossbow
   layers:
   - Default
   - TransparentFX
