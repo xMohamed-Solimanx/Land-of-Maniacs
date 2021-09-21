@@ -5,10 +5,11 @@ using UnityEngine;
 public class EnemyDamage : MonoBehaviour
 {
     public int EnemyHealth = 100;
+    private AudioSource MyPlayer;
     // Start is called before the first frame update
     void Start()
     {
-        
+        MyPlayer = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -22,6 +23,7 @@ public class EnemyDamage : MonoBehaviour
         if (other.gameObject.CompareTag("Knife"))
         {
             EnemyHealth -= 50;
+            MyPlayer.Play();
         }
     }
 }
