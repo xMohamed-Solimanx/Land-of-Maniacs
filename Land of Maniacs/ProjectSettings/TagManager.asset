@@ -18,6 +18,7 @@ TagManager:
   - HandgunAmmo
   - Door
   - Enemy
+  - PlayerKnife
   layers:
   - Default
   - TransparentFX

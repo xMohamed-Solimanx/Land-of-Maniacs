@@ -11,6 +11,7 @@ public class EnemyWeaponDamage : MonoBehaviour
 
     private bool HitActive = false;
 
+    [SerializeField] GameObject FPSArms; //used to decrease player stamina when hit by enemies
 
 
     private void OnTriggerEnter(Collider other)
@@ -24,6 +25,7 @@ public class EnemyWeaponDamage : MonoBehaviour
                 SaveScript.PlayerHealth -= WeaponDamage;
                 SaveScript.HealthChanged = true;
                 MyPlayer.Play();
+                FPSArms.GetComponent<PlayerAttacks>().AttackStamina -= 3;
             }
         }
     }

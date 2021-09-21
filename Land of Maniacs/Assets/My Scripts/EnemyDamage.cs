@@ -9,7 +9,7 @@ public class EnemyDamage : MonoBehaviour
     [SerializeField] AudioSource StabPlayer;
     private Animator Anim;
 
-    [SerializeField] GameObject EnemyObject;
+    [SerializeField] GameObject EnemyObject; //To destroy the enemy object after death
 
     private bool HasDied = false; //used in Update() so that the death animation doesn't loop
     // Start is called before the first frame update
@@ -38,7 +38,19 @@ public class EnemyDamage : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Knife"))
         {
-            EnemyHealth -= 25;
+            EnemyHealth -= 10;
+            MyPlayer.Play();
+            StabPlayer.Play();
+        }
+        if (other.gameObject.CompareTag("Axe"))
+        {
+            EnemyHealth -= 20;
+            MyPlayer.Play();
+            StabPlayer.Play();
+        }
+        if (other.gameObject.CompareTag("BaseballBat"))
+        {
+            EnemyHealth -= 15;
             MyPlayer.Play();
             StabPlayer.Play();
         }

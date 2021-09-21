@@ -6,7 +6,7 @@ public class PlayerAttacks : MonoBehaviour
 {
     private Animator Anim;
 
-    private float AttackStamina; //To get the current (realtime) attack stamina amount
+    public float AttackStamina; //To get the current (realtime) attack stamina amount
     [SerializeField] float MaxAttackStamina = 10;
     [SerializeField] float AttackDrain = 2;
     [SerializeField] float AttackRefill = 1;
@@ -20,7 +20,7 @@ public class PlayerAttacks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(AttackStamina);
+        Debug.Log("Attack Stamina" + AttackStamina);
         if (AttackStamina < MaxAttackStamina)
         {
             AttackStamina += AttackRefill * Time.deltaTime;
