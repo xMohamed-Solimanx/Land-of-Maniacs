@@ -11,7 +11,7 @@ public class EnemyDamage : MonoBehaviour
 
     [SerializeField] GameObject EnemyObject; //To destroy the enemy object after death
 
-    private bool HasDied = false; //used in Update() so that the death animation doesn't loop
+    public bool HasDied = false; //used in Update() so that the death animation doesn't loop
     // Start is called before the first frame update
     void Start()
     {
@@ -36,19 +36,19 @@ public class EnemyDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Knife"))
+        if (other.gameObject.CompareTag("PlayerKnife"))
         {
             EnemyHealth -= 10;
             MyPlayer.Play();
             StabPlayer.Play();
         }
-        if (other.gameObject.CompareTag("Axe"))
+        if (other.gameObject.CompareTag("PlayerAxe"))
         {
             EnemyHealth -= 20;
             MyPlayer.Play();
             StabPlayer.Play();
         }
-        if (other.gameObject.CompareTag("BaseballBat"))
+        if (other.gameObject.CompareTag("PlayerBat"))
         {
             EnemyHealth -= 15;
             MyPlayer.Play();

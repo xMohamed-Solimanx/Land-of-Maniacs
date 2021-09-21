@@ -29,6 +29,8 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] GameObject ChaseMusic;
     [SerializeField] GameObject HurtUI;
 
+    [SerializeField] GameObject EnemyDamageZone; // to access HasDied bool to be able to turn off chase music after enemy death
+
 
 
     // Start is called before the first frame update
@@ -41,6 +43,11 @@ public class EnemyAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (EnemyDamageZone.GetComponent<EnemyDamage>().HasDied == true) // if enemy is dead, turn off chase music
+        {
+            ChaseMusic.gameObject.SetActive(false);
+        }
         DistanceToPlayer = Vector3.Distance(Player.position, Enemy.transform.position);
         if (DistanceToPlayer < MaxRange)
         {
@@ -73,7 +80,11 @@ public class EnemyAttack : MonoBehaviour
         if (RunToPlayer)
         {
             Enemy.GetComponent<EnemyMove>().enabled = false;
-            ChaseMusic.gameObject.SetActive(true);
+            if (EnemyDamageZone.GetComponent<EnemyDamage>().HasDied == false) // if false, play the chase music
+            {
+                ChaseMusic.gameObject.SetActive(true);
+            }
+
             if (DistanceToPlayer > AttackDistance)
             {
                 Nav.isStopped = false;          //start moving
@@ -111,14 +122,19 @@ public class EnemyAttack : MonoBehaviour
             RunToPlayer = true;
         }
 
-        if (other.gameObject.CompareTag("Knife"))
+        if (other.gameObject.CompareTag("PlayerKnife"))
         {
             Anim.SetTrigger("SmallReact");
         }
 
-        if (other.gameObject.CompareTag("Axe"))
+        if (other.gameObject.CompareTag("PlayerAxe"))
         {
             Anim.SetTrigger("BigReact");
+        }
+
+        if (other.gameObject.CompareTag("PlayerBat"))
+        {
+            Anim.SetTrigger("SmallReact");
         }
     }
 
