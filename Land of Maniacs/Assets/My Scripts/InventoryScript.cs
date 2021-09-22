@@ -16,17 +16,27 @@ public class InventoryScript : MonoBehaviour
     [SerializeField] GameObject Handgun;
     [SerializeField] GameObject Crossbow;
 
+    [SerializeField] GameObject GunUI;  // to turn on gun and bullet amount graphic only when player has gun in hand
+    [SerializeField] GameObject BulletAmt;
+
+    [SerializeField] GameObject CrossbowUI;  
+    [SerializeField] GameObject ArrowAmt;
 
     [SerializeField] Animator Anim;
 
 
-    
+
+
     private AudioSource MyPlayer;
     [SerializeField] AudioClip AppleBite;
     [SerializeField] AudioClip BatteryPickup;
     [SerializeField] AudioClip WeaponChange;
     [SerializeField] AudioClip ArrowShot;
     [SerializeField] AudioClip GunShot;
+    [SerializeField] AudioClip GunReload;
+    [SerializeField] AudioClip CrossbowReload;
+
+
 
     //public static bool InventoryActive = false;
     //public static float delay = 2f;
@@ -117,6 +127,12 @@ public class InventoryScript : MonoBehaviour
         SaveScript.InventoryActive = false;
         Cursor.visible = false;
 
+        GunUI.gameObject.SetActive(false);
+        BulletAmt.gameObject.SetActive(false);
+        CrossbowUI.gameObject.SetActive(false);
+        ArrowAmt.gameObject.SetActive(false);
+
+
 
         // Apples
         AppleImage1.gameObject.SetActive(false);
@@ -176,7 +192,8 @@ public class InventoryScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             if (SaveScript.InventoryActive == false)
-            {
+            { 
+
                 InventoryPanel.gameObject.SetActive(true);
                 LightSettingsPlayer.InventoryOn = true;
                 SaveScript.InventoryActive = true;
@@ -188,6 +205,20 @@ public class InventoryScript : MonoBehaviour
                 SaveScript.HaveAxe = false;
                 SaveScript.HaveGun = false;
                 SaveScript.HaveCrossbow = false;
+                GunUI.gameObject.SetActive(false);
+                BulletAmt.gameObject.SetActive(false);
+                CrossbowUI.gameObject.SetActive(false);
+                ArrowAmt.gameObject.SetActive(false);
+
+
+                /* BaseballBat.gameObject.SetActive(false);
+                 Knife.gameObject.SetActive(false);
+                 Axe.gameObject.SetActive(false);
+                 Handgun.gameObject.SetActive(false);
+                 Crossbow.gameObject.SetActive(false);
+                 PlayerArms.gameObject.SetActive(false);*/
+
+
 
             }
             else
@@ -198,6 +229,7 @@ public class InventoryScript : MonoBehaviour
                 Time.timeScale = 1f;
                 Cursor.visible = false;
                 // I need to enable the camera rotation here
+                
 
             }
 
@@ -583,6 +615,7 @@ public class InventoryScript : MonoBehaviour
         SaveScript.HaveBat = false;
         SaveScript.HaveAxe = false;
         SaveScript.HaveCrossbow = false;
+        
 
     }
     public void ShowBaseballBat()
@@ -657,6 +690,9 @@ public class InventoryScript : MonoBehaviour
         SaveScript.HaveAxe = false;
         SaveScript.HaveCrossbow = false;
 
+        GunUI.gameObject.SetActive(true);
+        BulletAmt.gameObject.SetActive(true);
+
 
     }
     public void ShowCrossbow()
@@ -683,6 +719,34 @@ public class InventoryScript : MonoBehaviour
         SaveScript.HaveBat = false;
         SaveScript.HaveAxe = false;
         SaveScript.HaveCrossbow = true;
+
+        CrossbowUI.gameObject.SetActive(true);
+        ArrowAmt.gameObject.SetActive(true);
     }
 
+    public void AmmoRefill()
+    {
+        SaveScript.Bullets = 12;
+        SaveScript.HandgunAmmo -= 1;
+       // if (SaveScript.Bullets > 12)
+       // {
+      //      SaveScript.Bullets = 12;
+      //  }
+
+        MyPlayer.clip = GunReload;
+        MyPlayer.Play();
+    }
+
+    public void ArrowRefill()
+    {
+        SaveScript.Arrows = 10;
+        SaveScript.HandgunAmmo -= 1;
+        // if (SaveScript.Bullets > 12)
+        // {
+        //      SaveScript.Bullets = 12;
+        //  }
+
+        MyPlayer.clip = GunReload;
+        MyPlayer.Play();
+    }
 }

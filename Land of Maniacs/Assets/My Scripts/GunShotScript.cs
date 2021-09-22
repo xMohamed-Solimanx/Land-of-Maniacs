@@ -13,15 +13,19 @@ public class GunShotScript : MonoBehaviour
         {
             if(Input.GetKey(KeyCode.Mouse1) && Input.GetKeyDown(KeyCode.Mouse0))
             {
-                if(Physics.Raycast(transform.position, transform.forward, out hit, 3000))
+                if(SaveScript.Bullets > 0)
                 {
-                    if (hit.transform.Find("Body"))
+                    if (Physics.Raycast(transform.position, transform.forward, out hit, 3000))
                     {
-                        hit.transform.gameObject.GetComponentInChildren<EnemyDamage>().EnemyHealth -= Random.Range(30, 101);
-                        hit.transform.gameObject.GetComponent<Animator>().SetTrigger("BigReact");
-                        Debug.Log("Shoot enemy");
+                        if (hit.transform.Find("Body"))
+                        {
+                            hit.transform.gameObject.GetComponentInChildren<EnemyDamage>().EnemyHealth -= Random.Range(30, 101);
+                            hit.transform.gameObject.GetComponent<Animator>().SetTrigger("BigReact");
+                            Debug.Log("Shoot enemy");
+                        }
                     }
                 }
+                
             }
         }
 

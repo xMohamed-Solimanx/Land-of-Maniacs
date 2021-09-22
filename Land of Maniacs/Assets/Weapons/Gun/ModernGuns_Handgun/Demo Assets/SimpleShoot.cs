@@ -22,10 +22,21 @@ public class SimpleShoot : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (SaveScript.Bullets > 0)
         {
-            GetComponent<Animator>().SetTrigger("Fire");
+            if (Input.GetKey(KeyCode.Mouse1))
+            {
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    GetComponent<Animator>().SetTrigger("Fire");
+                }
+            }
         }
+        
+      //      if (Input.GetButtonDown("Fire1"))
+     //   {
+         //   GetComponent<Animator>().SetTrigger("Fire");
+       // }
     }
 
     void Shoot()
