@@ -740,7 +740,7 @@ public class InventoryScript : MonoBehaviour
     public void ArrowRefill()
     {
         SaveScript.Arrows = 10;
-        SaveScript.HandgunAmmo -= 1;
+        SaveScript.CrossbowAmmo -= 1;
         // if (SaveScript.Bullets > 12)
         // {
         //      SaveScript.Bullets = 12;

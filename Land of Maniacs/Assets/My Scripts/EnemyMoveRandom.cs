@@ -53,6 +53,7 @@ public class EnemyMoveRandom : MonoBehaviour
             Nav.isStopped = false;
             Anim.SetInteger("State", 0);
             NextTargetNumber = TargetNumber;
+            Nav.speed = 1.6f;
         }
 
         if (DistanceToTarget < StopDistance)
