@@ -59,13 +59,13 @@ public class EnemyAttack : MonoBehaviour
 
                 if (Blocked == false) // can see the player
                 {
-                    Debug.Log("I can see the player");
+                   // Debug.Log("I can see the player");
                     RunToPlayer = true;
                     FailedChecks = 0;
                 }
                 if (Blocked == true) // can't see the player
                 {
-                    Debug.Log("Where did the player go?!");
+                    //Debug.Log("Where did the player go?!");
                     RunToPlayer = false;
                     Anim.SetInteger("State", 1);
                     FailedChecks++;
@@ -98,7 +98,7 @@ public class EnemyAttack : MonoBehaviour
             if (DistanceToPlayer < AttackDistance - 0.5f)
             {
                 Nav.isStopped = true;           //stop moving
-                Debug.Log("I am attacking");
+               // Debug.Log("I am attacking");
                 Anim.SetInteger("State", 3);
                 Nav.acceleration = 180;         //The higher the acceleration, the enemy won't slide when stopping'
                 HurtUI.gameObject.SetActive(true);

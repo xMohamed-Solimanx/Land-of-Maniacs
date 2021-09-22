@@ -8,6 +8,9 @@ public class PlayerAttacks : MonoBehaviour
     [SerializeField] GameObject Crosshair;
     [SerializeField] GameObject Pointer;
 
+    private AudioSource MyPlayer;
+    [SerializeField] AudioClip GunShotSound;
+
 
     public float AttackStamina; //To get the current (realtime) attack stamina amount
     [SerializeField] float MaxAttackStamina = 10;
@@ -20,13 +23,14 @@ public class PlayerAttacks : MonoBehaviour
         AttackStamina = MaxAttackStamina;
         Crosshair.gameObject.SetActive(false);
         Pointer.gameObject.SetActive(true);
+        MyPlayer = GetComponent<AudioSource>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Attack Stamina" + AttackStamina);
+        //Debug.Log("Attack Stamina" + AttackStamina);
         if (AttackStamina < MaxAttackStamina)
         {
             AttackStamina += AttackRefill * Time.deltaTime;
@@ -93,6 +97,12 @@ public class PlayerAttacks : MonoBehaviour
                     Crosshair.gameObject.SetActive(true);
                     Pointer.gameObject.SetActive(false);
 
+                   /* if (Input.GetKeyDown(KeyCode.Mouse0)) //left mouse button
+                    {
+                        MyPlayer.clip = GunShotSound;
+                        MyPlayer.Play();
+                    }*/
+
                 }
                 if (Input.GetKeyUp(KeyCode.Mouse1))
                 {
@@ -101,6 +111,12 @@ public class PlayerAttacks : MonoBehaviour
                     Anim.SetBool("AimGun", false);
 
                 }
+                if (Input.GetKeyDown(KeyCode.Mouse0)) //left mouse button
+                {
+                    MyPlayer.clip = GunShotSound;
+                    MyPlayer.Play();
+                }
+
             }
         }
         
