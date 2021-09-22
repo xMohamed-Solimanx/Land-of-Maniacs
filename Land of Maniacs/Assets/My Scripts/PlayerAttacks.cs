@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerAttacks : MonoBehaviour
 {
     private Animator Anim;
+    [SerializeField] GameObject Crosshair;
+    [SerializeField] GameObject Pointer;
+
 
     public float AttackStamina; //To get the current (realtime) attack stamina amount
     [SerializeField] float MaxAttackStamina = 10;
@@ -15,6 +18,9 @@ public class PlayerAttacks : MonoBehaviour
     {
         Anim = GetComponent<Animator>();
         AttackStamina = MaxAttackStamina;
+        Crosshair.gameObject.SetActive(false);
+        Pointer.gameObject.SetActive(true);
+
     }
 
     // Update is called once per frame
@@ -74,6 +80,25 @@ public class PlayerAttacks : MonoBehaviour
                 {
                     Anim.SetTrigger("AxeRMB");
                     AttackStamina -= AttackDrain;
+
+                }
+            }
+
+            if (SaveScript.HaveGun == true)
+            {
+                
+                if (Input.GetKey(KeyCode.Mouse1))
+                {
+                    Anim.SetBool("AimGun", true);
+                    Crosshair.gameObject.SetActive(true);
+                    Pointer.gameObject.SetActive(false);
+
+                }
+                if (Input.GetKeyUp(KeyCode.Mouse1))
+                {
+                    Crosshair.gameObject.SetActive(false);
+                    Pointer.gameObject.SetActive(true);
+                    Anim.SetBool("AimGun", false);
 
                 }
             }

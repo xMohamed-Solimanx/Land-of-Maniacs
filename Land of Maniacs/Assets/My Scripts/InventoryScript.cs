@@ -186,6 +186,9 @@ public class InventoryScript : MonoBehaviour
                 SaveScript.HaveKnife = false;   //to avoid the registration of the weapon animation while in the inventory
                 SaveScript.HaveBat = false;
                 SaveScript.HaveAxe = false;
+                SaveScript.HaveGun = false;
+                SaveScript.HaveCrossbow = false;
+
             }
             else
             {
@@ -575,9 +578,11 @@ public class InventoryScript : MonoBehaviour
 
         MyPlayer.clip = WeaponChange;
         MyPlayer.Play();
+        SaveScript.HaveGun = false;
         SaveScript.HaveKnife = true;
         SaveScript.HaveBat = false;
         SaveScript.HaveAxe = false;
+        SaveScript.HaveCrossbow = false;
 
     }
     public void ShowBaseballBat()
@@ -598,9 +603,11 @@ public class InventoryScript : MonoBehaviour
         MyPlayer.clip = WeaponChange;
         MyPlayer.Play();
 
+        SaveScript.HaveGun = false;
         SaveScript.HaveKnife = false;
         SaveScript.HaveBat = true;
         SaveScript.HaveAxe = false;
+        SaveScript.HaveCrossbow = false;
     }
     public void ShowAxe()
     {
@@ -622,6 +629,9 @@ public class InventoryScript : MonoBehaviour
         SaveScript.HaveKnife = false;
         SaveScript.HaveBat = false;
         SaveScript.HaveAxe = true;
+        SaveScript.HaveGun = false;
+        SaveScript.HaveCrossbow = false;
+
     }
 
     public void ShowHandgun()
@@ -641,6 +651,13 @@ public class InventoryScript : MonoBehaviour
         MyPlayer.clip = GunShot;
 
         MyPlayer.Play();
+        SaveScript.HaveGun = true;
+        SaveScript.HaveKnife = false;
+        SaveScript.HaveBat = false;
+        SaveScript.HaveAxe = false;
+        SaveScript.HaveCrossbow = false;
+
+
     }
     public void ShowCrossbow()
     {
@@ -660,6 +677,12 @@ public class InventoryScript : MonoBehaviour
 
         MyPlayer.clip = ArrowShot;
         MyPlayer.Play();
+
+        SaveScript.HaveGun = false;
+        SaveScript.HaveKnife = false;
+        SaveScript.HaveBat = false;
+        SaveScript.HaveAxe = false;
+        SaveScript.HaveCrossbow = true;
     }
 
 }

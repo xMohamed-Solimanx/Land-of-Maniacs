@@ -16,6 +16,7 @@ public class EnemyDamage : MonoBehaviour
     [SerializeField] GameObject BloodSplatKnife; //to turn the blood effect coming out of the player's weapon on and off
     [SerializeField] GameObject BloodSplatAxe;
     [SerializeField] GameObject BloodSplatBat;
+
     // Start is called before the first frame update
     void Start()
     {
