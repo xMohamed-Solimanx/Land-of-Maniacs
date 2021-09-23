@@ -53,6 +53,7 @@ public class LoadingScreenBarSystem : MonoBehaviour {
 
     private void Start()
     {
+        Cursor.visible = true;
         vignetteEfect = transform.Find("VignetteEfect").GetComponent<Image>();
         vignetteEfect.color = new Color(vignetteEfect.color.r,vignetteEfect.color.g,vignetteEfect.color.b,vignetteEfectVolue);
         MenuScreen.gameObject.SetActive(true);
