@@ -10,7 +10,7 @@ public class SimpleShoot : MonoBehaviour
     public GameObject muzzleFlashPrefab;
     public Transform barrelLocation;
     public Transform casingExitLocation;
-
+    public AudioSource GunShotPlayer;
 
    // public float shotPower = 100f;
 
@@ -49,7 +49,10 @@ public class SimpleShoot : MonoBehaviour
 
        // Destroy(tempFlash, 0.5f);
         //  Instantiate(casingPrefab, casingExitLocation.position, casingExitLocation.rotation).GetComponent<Rigidbody>().AddForce(casingExitLocation.right * 100f);
-       
+       if (SaveScript.Bullets >= 0)
+        {
+            GunShotPlayer.Play();
+        }
     }
 
     void CasingRelease()

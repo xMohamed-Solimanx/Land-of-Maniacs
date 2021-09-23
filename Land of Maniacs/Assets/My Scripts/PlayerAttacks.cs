@@ -107,7 +107,7 @@ public class PlayerAttacks : MonoBehaviour
                         if (Input.GetKeyDown(KeyCode.Mouse0)) //left mouse button
                         {
                             MyPlayer.clip = GunShotSound;
-                            MyPlayer.Play();
+                           // MyPlayer.Play();
                         }
                     }
                     if (SaveScript.Bullets <= 0)
