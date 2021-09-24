@@ -17,6 +17,7 @@ namespace Nokobot.Assets.Crossbow
 
         void Update()
         {
+
             if (SaveScript.Arrows > 0)
             {
                 if (Input.GetKey(KeyCode.Mouse1))

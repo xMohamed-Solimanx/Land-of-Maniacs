@@ -73,10 +73,10 @@ public class EnemyDamage : MonoBehaviour
         }
         if (other.gameObject.CompareTag("PlayerCrossbow"))
         {
-            Destroy(other.gameObject, 0.001f);
             EnemyHealth -= 50;
             MyPlayer.Play();
             StabPlayer.Play();
+            Destroy(other.gameObject);
         }
     }
 }

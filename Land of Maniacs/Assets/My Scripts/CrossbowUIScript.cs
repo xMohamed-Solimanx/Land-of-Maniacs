@@ -17,17 +17,21 @@ public class CrossbowUIScript : MonoBehaviour
     {
         ArrowsAmt.text = SaveScript.Arrows + "";
 
-        if (Input.GetKey(KeyCode.Mouse1))
+        if (SaveScript.HaveCrossbow)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKey(KeyCode.Mouse1))
             {
-                if (SaveScript.Arrows > 0)
+                if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    SaveScript.Arrows -= 1;
-                   // BulletAmt.text = SaveScript.Bullets + "";
+                    if (SaveScript.Arrows > 0)
+                    {
+                        SaveScript.Arrows -= 1;
+                        // BulletAmt.text = SaveScript.Bullets + "";
 
+                    }
                 }
             }
         }
+        
     }
 }

@@ -646,7 +646,13 @@ public class InventoryScript : MonoBehaviour
         SaveScript.HaveBat = false;
         SaveScript.HaveAxe = false;
         SaveScript.HaveCrossbow = false;
-        
+
+        GunUI.gameObject.SetActive(false);
+        BulletAmt.gameObject.SetActive(false);
+
+        CrossbowUI.gameObject.SetActive(false);
+        ArrowAmt.gameObject.SetActive(false);
+
 
     }
     public void ShowBaseballBat()
@@ -672,6 +678,12 @@ public class InventoryScript : MonoBehaviour
         SaveScript.HaveBat = true;
         SaveScript.HaveAxe = false;
         SaveScript.HaveCrossbow = false;
+
+        GunUI.gameObject.SetActive(false);
+        BulletAmt.gameObject.SetActive(false);
+
+        CrossbowUI.gameObject.SetActive(false);
+        ArrowAmt.gameObject.SetActive(false);
     }
     public void ShowAxe()
     {
@@ -695,6 +707,12 @@ public class InventoryScript : MonoBehaviour
         SaveScript.HaveAxe = true;
         SaveScript.HaveGun = false;
         SaveScript.HaveCrossbow = false;
+
+        GunUI.gameObject.SetActive(false);
+        BulletAmt.gameObject.SetActive(false);
+
+        CrossbowUI.gameObject.SetActive(false);
+        ArrowAmt.gameObject.SetActive(false);
 
     }
 
@@ -723,6 +741,9 @@ public class InventoryScript : MonoBehaviour
 
         GunUI.gameObject.SetActive(true);
         BulletAmt.gameObject.SetActive(true);
+
+        CrossbowUI.gameObject.SetActive(false);
+        ArrowAmt.gameObject.SetActive(false);
 
 
     }
@@ -753,6 +774,9 @@ public class InventoryScript : MonoBehaviour
 
         CrossbowUI.gameObject.SetActive(true);
         ArrowAmt.gameObject.SetActive(true);
+
+        GunUI.gameObject.SetActive(false);
+        BulletAmt.gameObject.SetActive(false);
     }
 
     public void AmmoRefill()

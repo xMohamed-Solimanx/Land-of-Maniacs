@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering.PostProcessing; //to access postprocessing layer to turn on or off Fog
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
+
 
 
 
@@ -55,7 +57,7 @@ public class OptionsMenu : MonoBehaviour
     void Update()
     {
         Cursor.visible = true;
-        Time.timeScale = 0f;
+       // Time.timeScale = 0f;
     }
 
 
@@ -231,7 +233,14 @@ public class OptionsMenu : MonoBehaviour
         SFXMixer.SetFloat("Volume", SFXLevel.value);
     }
 
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
+        SaveScript.OptionsActive = false;
 
+
+    }
 
 
 
