@@ -17,7 +17,7 @@ public class GunUIScript : MonoBehaviour
     {
         BulletAmt.text = SaveScript.Bullets + "";
 
-        if (Input.GetKey(KeyCode.Mouse1))
+      /*  if (Input.GetKey(KeyCode.Mouse1))
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
@@ -28,6 +28,6 @@ public class GunUIScript : MonoBehaviour
 
                 }
             }
-        }
+        }*/
     }
 }

@@ -36,6 +36,9 @@ public class InventoryScript : MonoBehaviour
     [SerializeField] AudioClip GunReload;
     [SerializeField] AudioClip CrossbowReload;
 
+    [SerializeField] GameObject OptionsMenu; //to switch options menu on and off
+
+
 
 
     //public static bool InventoryActive = false;
@@ -132,6 +135,8 @@ public class InventoryScript : MonoBehaviour
         CrossbowUI.gameObject.SetActive(false);
         ArrowAmt.gameObject.SetActive(false);
 
+        OptionsMenu.gameObject.SetActive(false);
+
 
 
         // Apples
@@ -189,6 +194,32 @@ public class InventoryScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            if(SaveScript.OptionsActive == false)
+            {
+                OptionsMenu.gameObject.SetActive(true);
+                SaveScript.OptionsActive = true;
+
+            }
+            else
+            {
+                OptionsMenu.gameObject.SetActive(false);
+                SaveScript.OptionsActive = false;
+                if (SaveScript.InventoryActive == true)
+                {
+                    Cursor.visible = true;
+                }
+                if (SaveScript.InventoryActive == false)
+                {
+                    Cursor.visible = false;
+                    Time.timeScale = 1f;
+
+                }
+
+
+            }
+        }
         if (Input.GetKeyDown(KeyCode.I))
         {
             if (SaveScript.InventoryActive == false)

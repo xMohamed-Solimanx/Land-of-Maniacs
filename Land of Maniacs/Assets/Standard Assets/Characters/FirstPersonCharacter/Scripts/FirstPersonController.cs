@@ -138,7 +138,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 Stamina = 0.1f;
             }
 
-            if (SaveScript.InventoryActive == false)
+
+            if (SaveScript.InventoryActive == false && SaveScript.OptionsActive == false)
             {
                 RotateView();
             }

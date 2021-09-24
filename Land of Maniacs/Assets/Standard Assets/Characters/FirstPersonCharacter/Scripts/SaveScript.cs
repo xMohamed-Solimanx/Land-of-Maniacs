@@ -23,6 +23,8 @@ public class SaveScript : MonoBehaviour
     public static int HandgunAmmo = 0;
     public static int CrossbowAmmo = 0;
     public static bool InventoryActive = false;
+    public static bool OptionsActive = false;
+
 
     public static bool HaveKnife = false;
     public static bool HaveBat = false;

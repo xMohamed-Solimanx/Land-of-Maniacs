@@ -52,6 +52,8 @@ public class SimpleShoot : MonoBehaviour
        if (SaveScript.Bullets >= 0)
         {
             GunShotPlayer.Play();
+            SaveScript.Bullets -= 1;
+
         }
     }
 
