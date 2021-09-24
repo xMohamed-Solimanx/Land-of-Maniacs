@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering.PostProcessing; //to access postprocessing layer to turn on or off Fog
+using UnityEngine.Audio;
 
 
 
@@ -28,6 +29,11 @@ public class OptionsMenu : MonoBehaviour
     public Toggle AntiTAA;
     private int AntiState = 4;
 
+
+    public Slider AmbienceLevel;
+    public Slider SFXLevel;
+    public AudioMixer AmbienceMixer;
+    public AudioMixer SFXMixer;
 
     // Start is called before the first frame update
     void Start()
@@ -214,5 +220,25 @@ public class OptionsMenu : MonoBehaviour
             }
         }
     }
+
+
+    public void AmbienceVolume()
+    {
+        AmbienceMixer.SetFloat("Volume", AmbienceLevel.value);
+    }
+    public void SFXVolume()
+    {
+        SFXMixer.SetFloat("Volume", SFXLevel.value);
+    }
+
+
+
+
+
+
+
+
+
+
 }
 
