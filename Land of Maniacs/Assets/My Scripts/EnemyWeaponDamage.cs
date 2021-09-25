@@ -13,7 +13,10 @@ public class EnemyWeaponDamage : MonoBehaviour
 
     [SerializeField] GameObject FPSArms; //used to decrease player stamina when hit by enemies
 
-
+    private void Start()
+    {
+        StartCoroutine(StartElements());
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -54,6 +57,14 @@ public class EnemyWeaponDamage : MonoBehaviour
     }
 
 
+    IEnumerator StartElements()
+    {
+        yield return new WaitForSeconds(0.1f);
 
+        HurtAnim = SaveScript.Hurt;
+        MyPlayer = SaveScript.AudioP;
+        FPSArms = SaveScript.Arms;
+        
+    }
 
 }

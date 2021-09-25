@@ -233,6 +233,22 @@ public class OptionsMenu : MonoBehaviour
         SFXMixer.SetFloat("Volume", SFXLevel.value);
     }
 
+    public void Easy()
+    {
+        SaveScript.MaxEnemiesOnScreen = 6;
+        SaveScript.MaxEnemiesInGame = 100;
+    }
+    public void Medium()
+    {
+        SaveScript.MaxEnemiesOnScreen = 15;
+        SaveScript.MaxEnemiesInGame = 300;
+    }
+    public void Hard()
+    {
+        SaveScript.MaxEnemiesOnScreen = 30;
+        SaveScript.MaxEnemiesInGame = 600;
+    }
+
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene(0);

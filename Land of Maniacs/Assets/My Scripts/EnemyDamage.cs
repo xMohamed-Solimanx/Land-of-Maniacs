@@ -17,30 +17,38 @@ public class EnemyDamage : MonoBehaviour
     [SerializeField] GameObject BloodSplatAxe;
     [SerializeField] GameObject BloodSplatBat;
 
+    private bool DamageOn = false; //used to delay the Update() untill the Coroutine (StartElements) is finished
+
+
     // Start is called before the first frame update
     void Start()
     {
         MyPlayer = GetComponent<AudioSource>();
         Anim = GetComponentInParent<Animator>();
-
-        BloodSplatKnife.gameObject.SetActive(false);
-        BloodSplatAxe.gameObject.SetActive(false);
-        BloodSplatBat.gameObject.SetActive(false);
+        StartCoroutine(StartElements());
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(EnemyHealth <= 0)
+        if (DamageOn == true)
         {
-            if(HasDied == false)
-            {
-                Anim.SetTrigger("Death");
-                HasDied = true;
-                Anim.SetBool("IsDead", true);
 
-                Destroy(EnemyObject, 20f);
+
+            if (EnemyHealth <= 0)
+            {
+                if (HasDied == false)
+                {
+                    Anim.SetTrigger("Death");
+                    HasDied = true;
+                    Anim.SetBool("IsDead", true);
+
+                    Destroy(this.transform.parent.gameObject, 20f);
+                    SaveScript.EnemiesOnScreen--;
+
+
+                }
             }
         }
     }
@@ -77,6 +85,31 @@ public class EnemyDamage : MonoBehaviour
             MyPlayer.Play();
             StabPlayer.Play();
             Destroy(other.gameObject);
+            Anim.SetTrigger("BigReact");
+
+           // this.transform.gameObject.GetComponentInChildren<EnemyAttack>().RunToPlayer = true;
         }
     }
+
+
+
+
+
+    IEnumerator StartElements()
+    {
+        yield return new WaitForSeconds(0.1f);
+        StabPlayer = SaveScript.StabSound;
+        BloodSplatKnife = SaveScript.SplatKnife;
+        BloodSplatBat = SaveScript.SplatBat;
+        BloodSplatAxe = SaveScript.SplatAxe;
+
+        BloodSplatKnife.gameObject.SetActive(false);
+        BloodSplatAxe.gameObject.SetActive(false);
+        BloodSplatBat.gameObject.SetActive(false);
+
+        DamageOn = true;
+
+    }
+
+
 }

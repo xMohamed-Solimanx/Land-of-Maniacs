@@ -1520,7 +1520,6 @@ GameObject:
   - component: {fileID: 4303527544724590744}
   - component: {fileID: 4303527544724590749}
   - component: {fileID: 4303527544724590746}
-  - component: {fileID: 4303527544724590747}
   m_Layer: 9
   m_Name: Enemy_Bandit
   m_TagString: Enemy
@@ -1633,31 +1632,8 @@ MonoBehaviour:
   Target7: {fileID: 0}
   Target8: {fileID: 0}
   Target9: {fileID: 0}
-  WaitTime: 2
-  MaxTargets: 0
-  StopDistance: 2
---- !u!114 &4303527544724590747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3997043975738388345}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fdd40e9fcb260e4ebba992df351ff7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target1: {fileID: 0}
-  Target2: {fileID: 0}
-  Target3: {fileID: 0}
-  Target4: {fileID: 0}
-  Target5: {fileID: 0}
-  Target6: {fileID: 0}
-  Target7: {fileID: 0}
-  Target8: {fileID: 0}
-  Target9: {fileID: 0}
-  WaitTime: 2
+  WaitTime: 3
+  MaxTargets: 3
   StopDistance: 2
 --- !u!1 &4154027479538077806
 GameObject:
@@ -1739,7 +1715,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4303527544136326695
 Transform:
   m_ObjectHideFlags: 0

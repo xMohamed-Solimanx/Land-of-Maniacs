@@ -11,7 +11,7 @@ public class EnemyAttack : MonoBehaviour
     private NavMeshHit hit;
 
     private bool Blocked = false;
-    private bool RunToPlayer = false;
+    public  bool RunToPlayer = false;
     private float DistanceToPlayer;
     private bool IsChecking = true;
     private int FailedChecks = 0;
@@ -36,97 +36,103 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] bool IHaveBat;
     [SerializeField] bool IHaveAxe;
 
+    private bool CanRun = false; //used to delay the Update() untill the Coroutine (StartElements) is finished
 
 
     // Start is called before the first frame update
     void Start()
     {
         Nav = GetComponentInParent<NavMeshAgent>();
-        ChaseMusic.gameObject.SetActive(false);
+        StartCoroutine(StartElements()); // Used to make sure that savescript is loaded first in the fpscontroller so then we can assign the targets to enemy move
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (CanRun == true)
+        {
 
-        if (EnemyDamageZone.GetComponent<EnemyDamage>().HasDied == true) // if enemy is dead, turn off chase music
-        {
-            ChaseMusic.gameObject.SetActive(false);
-        }
-        DistanceToPlayer = Vector3.Distance(Player.position, Enemy.transform.position);
-        if (DistanceToPlayer < MaxRange)
-        {
-            if (IsChecking == true)
+
+            if (EnemyDamageZone.GetComponent<EnemyDamage>().HasDied == true) // if enemy is dead, turn off chase music
             {
-                IsChecking = false;
-
-                Blocked = NavMesh.Raycast(transform.position, Player.position, out hit, NavMesh.AllAreas);
-
-                if (Blocked == false) // can see the player
-                {
-                   // Debug.Log("I can see the player");
-                    RunToPlayer = true;
-                    FailedChecks = 0;
-                }
-                if (Blocked == true) // can't see the player
-                {
-                    //Debug.Log("Where did the player go?!");
-                    RunToPlayer = false;
-                    Anim.SetInteger("State", 1);
-                    FailedChecks++;
-                }
-
-                StartCoroutine(TimedCheck());
-
-
+                ChaseMusic.gameObject.SetActive(false);
             }
-        }
-
-        if (RunToPlayer)
-        {
-            Enemy.GetComponent<EnemyMove>().enabled = false;
-            if (EnemyDamageZone.GetComponent<EnemyDamage>().HasDied == false) // if false, play the chase music
+            DistanceToPlayer = Vector3.Distance(Player.position, Enemy.transform.position);
+            if (DistanceToPlayer < MaxRange)
             {
-                ChaseMusic.gameObject.SetActive(true);
+                if (IsChecking == true)
+                {
+                    IsChecking = false;
+
+                    Blocked = NavMesh.Raycast(transform.position, Player.position, out hit, NavMesh.AllAreas);
+
+                    if (Blocked == false) // can see the player
+                    {
+                        // Debug.Log("I can see the player");
+                        RunToPlayer = true;
+                        FailedChecks = 0;
+                    }
+                    if (Blocked == true) // can't see the player
+                    {
+                        //Debug.Log("Where did the player go?!");
+                        RunToPlayer = false;
+                        Anim.SetInteger("State", 1);
+                        FailedChecks++;
+                    }
+
+                    StartCoroutine(TimedCheck());
+
+
+                }
             }
 
-            if (DistanceToPlayer > AttackDistance)
+            if (RunToPlayer)
             {
-                Nav.isStopped = false;          //start moving
-                Anim.SetInteger("State", 2);
-                Nav.acceleration = 24;
-                Nav.SetDestination(Player.position);
-                Nav.speed = ChaseSpeed;
-                HurtUI.gameObject.SetActive(false);
+                Enemy.GetComponent<EnemyMoveRandom>().enabled = false;
+                if (EnemyDamageZone.GetComponent<EnemyDamage>().HasDied == false) // if false, play the chase music
+                {
+                    ChaseMusic.gameObject.SetActive(true);
+                }
 
+                if (DistanceToPlayer > AttackDistance)
+                {
+                    Nav.isStopped = false;          //start moving
+                    Anim.SetInteger("State", 2);
+                    Nav.acceleration = 24;
+                    Nav.SetDestination(Player.position);
+                    Nav.speed = ChaseSpeed;
+                    HurtUI.gameObject.SetActive(false);
+
+                }
+                if (DistanceToPlayer < AttackDistance - 0.5f)
+                {
+                    Nav.isStopped = true;           //stop moving
+                                                     Debug.Log("I am attacking");
+                    if (IHaveAxe == true)
+                    {
+                        Anim.SetInteger("State", 3);
+                    }
+                    if (IHaveBat == true)
+                    {
+                        Anim.SetInteger("State", 4);
+                    }
+                    if (IHaveKnife == true)
+                    {
+                        Anim.SetInteger("State", 5);
+                    }
+                    Nav.acceleration = 180;         //The higher the acceleration, the enemy won't slide when stopping'
+                    HurtUI.gameObject.SetActive(true);
+
+                    Vector3 Pos = (Player.position - Enemy.transform.position).normalized;  //handling enemy rotation when attacking the player to make him face the player
+                    Quaternion PosRotation = Quaternion.LookRotation(new Vector3(Pos.x, 0, Pos.z));
+                    Enemy.transform.rotation = Quaternion.Slerp(Enemy.transform.rotation, PosRotation, Time.deltaTime * AttackRotateSpeed);
+                }
             }
-            if (DistanceToPlayer < AttackDistance - 0.5f)
+            else if (RunToPlayer == false)
             {
-                Nav.isStopped = true;           //stop moving
-               // Debug.Log("I am attacking");
-               if(IHaveAxe == true)
-                {
-                    Anim.SetInteger("State", 3);
-                }
-                if (IHaveBat == true)
-                {
-                    Anim.SetInteger("State", 4);
-                }
-                if (IHaveKnife == true)
-                {
-                    Anim.SetInteger("State", 5);
-                }
-                Nav.acceleration = 180;         //The higher the acceleration, the enemy won't slide when stopping'
-                HurtUI.gameObject.SetActive(true);
-
-                Vector3 Pos = (Player.position - Enemy.transform.position).normalized;  //handling enemy rotation when attacking the player to make him face the player
-                Quaternion PosRotation = Quaternion.LookRotation(new Vector3(Pos.x, 0, Pos.z));
-                Enemy.transform.rotation = Quaternion.Slerp(Enemy.transform.rotation, PosRotation, Time.deltaTime * AttackRotateSpeed);
+                Nav.isStopped = true;
             }
-        }
-        else if (RunToPlayer == false)
-        {
-            Nav.isStopped = true;
         }
 
     }
@@ -155,6 +161,7 @@ public class EnemyAttack : MonoBehaviour
         if (other.gameObject.CompareTag("PlayerCrossbow"))
         {
             Anim.SetTrigger("BigReact");
+            RunToPlayer = true;
         }
     }
 
@@ -165,13 +172,30 @@ public class EnemyAttack : MonoBehaviour
 
         if (FailedChecks > MaxChecks)
         {
-            Enemy.GetComponent<EnemyMove>().enabled = true;
+            Enemy.GetComponent<EnemyMoveRandom>().enabled = true;
             Nav.isStopped = false;
             Nav.speed = WalkSpeed;
             FailedChecks = 0;
             ChaseMusic.gameObject.SetActive(false);
         }
     }
+
+
+
+    IEnumerator StartElements()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        Player = SaveScript.PlayerChar;
+        ChaseMusic = SaveScript.Chase;  // to auto fill this data once enemy is spawned
+        HurtUI = SaveScript.HurtScreen;
+        ChaseMusic.gameObject.SetActive(false);
+        CanRun = true;
+        CheckTime = Random.Range(3, 15);
+
+    }
+
+
 
 
 }

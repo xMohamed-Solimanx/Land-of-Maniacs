@@ -31,4 +31,3 @@ namespace Nokobot.Assets.Crossbow
         }
     }
 }
-//Instantiate(arrowPrefab, arrowLocation.position, arrowLocation.rotation).GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotPower);

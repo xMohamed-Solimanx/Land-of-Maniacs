@@ -21,7 +21,8 @@ public class GunShotScript : MonoBehaviour
                         {
                             hit.transform.gameObject.GetComponentInChildren<EnemyDamage>().EnemyHealth -= Random.Range(30, 101);
                             hit.transform.gameObject.GetComponent<Animator>().SetTrigger("BigReact");
-                            Debug.Log("Shoot enemy");
+                            hit.transform.gameObject.GetComponentInChildren<EnemyAttack>().RunToPlayer = true;
+                            Debug.Log("Shot enemy");
                         }
                     }
                 }
