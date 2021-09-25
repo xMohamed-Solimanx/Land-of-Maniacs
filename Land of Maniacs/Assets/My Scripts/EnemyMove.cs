@@ -38,6 +38,7 @@ public class EnemyMove : MonoBehaviour
         Nav = GetComponent<NavMeshAgent>();
         TheTarget = Target1;
         Anim = GetComponent<Animator>();
+        Nav.avoidancePriority = Random.Range(2, 65); // to avoid enemies pushing themselves and players
     }
 
     // Update is called once per frame

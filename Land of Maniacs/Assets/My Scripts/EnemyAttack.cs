@@ -22,7 +22,7 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] int MaxChecks = 3;
     [SerializeField] float ChaseSpeed = 8.5f;
     [SerializeField] float WalkSpeed = 1.6f;
-    [SerializeField] float AttackDistance = 2.3f;
+    [SerializeField] float AttackDistance = 3f;
     [SerializeField] float AttackRotateSpeed = 2.0f;
     [SerializeField] float CheckTime = 3.0f;
 
@@ -30,6 +30,11 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] GameObject HurtUI;
 
     [SerializeField] GameObject EnemyDamageZone; // to access HasDied bool to be able to turn off chase music after enemy death
+
+        // To know what weapon the enemy is holding to trigger the right attack animation //
+    [SerializeField] bool IHaveKnife;
+    [SerializeField] bool IHaveBat;
+    [SerializeField] bool IHaveAxe;
 
 
 
@@ -99,7 +104,18 @@ public class EnemyAttack : MonoBehaviour
             {
                 Nav.isStopped = true;           //stop moving
                // Debug.Log("I am attacking");
-                Anim.SetInteger("State", 3);
+               if(IHaveAxe == true)
+                {
+                    Anim.SetInteger("State", 3);
+                }
+                if (IHaveBat == true)
+                {
+                    Anim.SetInteger("State", 4);
+                }
+                if (IHaveKnife == true)
+                {
+                    Anim.SetInteger("State", 5);
+                }
                 Nav.acceleration = 180;         //The higher the acceleration, the enemy won't slide when stopping'
                 HurtUI.gameObject.SetActive(true);
 

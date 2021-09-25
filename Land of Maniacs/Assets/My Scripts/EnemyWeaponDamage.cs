@@ -21,11 +21,13 @@ public class EnemyWeaponDamage : MonoBehaviour
             if (HitActive == false) //to deliver 1 hit damage and not multiple damage per attack
             {
                 HitActive = true;
-                HurtAnim.SetTrigger("Hurt");
                 SaveScript.PlayerHealth -= WeaponDamage;
                 SaveScript.HealthChanged = true;
+                Debug.Log("Hit the player");
+                HurtAnim.SetTrigger("Hurt");
                 MyPlayer.Play();
                 FPSArms.GetComponent<PlayerAttacks>().AttackStamina -= 0.2f;
+                ResetHit();
             }
         }
     }
@@ -40,4 +42,18 @@ public class EnemyWeaponDamage : MonoBehaviour
             }
         }
     }
+
+
+    IEnumerator ResetHit()
+    {
+        yield return new WaitForSeconds(1f);
+        if(HitActive == true)
+        {
+            HitActive = false;
+        }
+    }
+
+
+
+
 }
