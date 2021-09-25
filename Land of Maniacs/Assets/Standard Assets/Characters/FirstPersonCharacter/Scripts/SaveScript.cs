@@ -36,6 +36,8 @@ public class SaveScript : MonoBehaviour
     public static int Arrows = 10;
 
     public static bool NewGame = false;
+    public static bool SavedGame = false;
+
 
     public static Transform Target1;    // Used for spawning enemies, so that when they are spawned, they know what transforms to navigate to
     public static Transform Target2;
@@ -68,6 +70,20 @@ public class SaveScript : MonoBehaviour
     public static int EnemiesOnScreen = 0; // to keep track, it will be incremented and not greater than max.
     public static int MaxEnemiesInGame = 100;
     public static int EnemiesCurrent = 0;
+    public static int ApplesLeft = 10;
+    public static int HandgunAmmoLeft = 4;
+    public static int BatteriesLeft = 10;
+    public static int CrossbowAmmoLeft = 4;
+
+    public static int Enemy1 = 1;   //used to know if an enemy is alive when loading a saved game
+    public static int Enemy2 = 1;
+    public static int Enemy3 = 1;
+    public static int Enemy4 = 1;
+    public static int Enemy5 = 1;
+
+
+
+
 
     [SerializeField] Transform _Target1; //Used for spawning enemies, in order to appear in the inspector.
     [SerializeField] Transform _Target2;
@@ -132,7 +148,7 @@ public class SaveScript : MonoBehaviour
         if (NewGame == true)
         {
             PlayerHealth = 100;       //to be available for other scripts
-            HealthChanged = false;
+            HealthChanged = true;
             BatteryPower = 1.0f;
             BatteryRefill = false;
             FlashLightOn = false;
@@ -160,7 +176,86 @@ public class SaveScript : MonoBehaviour
             Bullets = 12;
             Arrows = 10;
 
+            NewGame = false;
+            ApplesLeft = 10;
+            HandgunAmmoLeft = 4;
+            BatteriesLeft = 10;
+            CrossbowAmmoLeft = 4;
+
+            Enemy1 = 1;
+            Enemy2 = 1;
+            Enemy3 = 1;
+            Enemy4 = 1;
+            Enemy5 = 1;
+
+
+
         }
+
+
+        if (SavedGame == true)
+        {
+            PlayerHealth = PlayerPrefs.GetInt("PlayersHealth");
+            HealthChanged = true;
+            BatteryPower = PlayerPrefs.GetFloat("BatteriesPower");
+            Apples = PlayerPrefs.GetInt("ApplesAmt");
+            Batteries = PlayerPrefs.GetInt("BatteriesAmt");
+            HandgunAmmo = PlayerPrefs.GetInt("HandgunAmmo");
+            CrossbowAmmo = PlayerPrefs.GetInt("CrossbowAmmo");
+            Bullets = PlayerPrefs.GetInt("BulletsAmt");
+            Arrows = PlayerPrefs.GetInt("ArrowsAmt");
+            MaxEnemiesOnScreen = PlayerPrefs.GetInt("MaxEScreen");
+            MaxEnemiesInGame = PlayerPrefs.GetInt("MaxEGame");
+            ApplesLeft = PlayerPrefs.GetInt("ApplesL");
+            HandgunAmmoLeft = PlayerPrefs.GetInt("HandgunAmmoL");
+            BatteriesLeft = PlayerPrefs.GetInt("BatteriesL");
+            CrossbowAmmoLeft = PlayerPrefs.GetInt("CrossbowAmmoL");
+            Enemy1 = PlayerPrefs.GetInt("Enemy1Alive");
+            Enemy2 = PlayerPrefs.GetInt("Enemy2Alive");
+            Enemy3 = PlayerPrefs.GetInt("Enemy3Alive");
+            Enemy4 = PlayerPrefs.GetInt("Enemy4Alive");
+            Enemy5 = PlayerPrefs.GetInt("Enemy5Alive");
+
+
+
+            if (PlayerPrefs.GetInt("KnifeInv") == 1)
+            {
+                Knife = true;
+            }
+            if (PlayerPrefs.GetInt("AxeInv") == 1)
+            {
+                Axe = true;
+            }
+            if (PlayerPrefs.GetInt("BaseballBatInv") == 1)
+            {
+                BaseballBat = true;
+            }
+            if (PlayerPrefs.GetInt("HandgunInv") == 1)
+            {
+                Handgun = true;
+            }
+            if (PlayerPrefs.GetInt("CrossbowInv") == 1)
+            {
+                Crossbow = true;
+            }
+            if (PlayerPrefs.GetInt("CabinKeyK") == 1)
+            {
+                CabinKey = true;
+            }
+            if (PlayerPrefs.GetInt("HouseK") == 1)
+            {
+                HouseKey = true;
+            }
+            if (PlayerPrefs.GetInt("RoomK") == 1)
+            {
+                RoomKey = true;
+            }
+            SavedGame = false;
+            
+
+        }
+
+
     }
 
 

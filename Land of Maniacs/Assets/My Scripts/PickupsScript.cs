@@ -111,6 +111,7 @@ public class PickupsScript : MonoBehaviour
                     else
                     {
                         Destroy(hit.transform.gameObject);
+                        SaveScript.ApplesLeft--;
                         SaveScript.Apples += 1;
                         MyPlayer.Play();
                     }
@@ -129,6 +130,8 @@ public class PickupsScript : MonoBehaviour
                     {
                         Destroy(hit.transform.gameObject);
                         SaveScript.Batteries += 1;
+                        SaveScript.BatteriesLeft--;
+
                         MyPlayer.Play();
                     }
 
@@ -231,6 +234,7 @@ public class PickupsScript : MonoBehaviour
                     else
                     {
                         Destroy(hit.transform.gameObject);
+                        SaveScript.CrossbowAmmoLeft--;
                         SaveScript.CrossbowAmmo = 1;
                         MyPlayer.Play();
                     }
@@ -248,6 +252,7 @@ public class PickupsScript : MonoBehaviour
                     else
                     {
                         Destroy(hit.transform.gameObject);
+                        SaveScript.HandgunAmmoLeft--;
                         SaveScript.HandgunAmmo += 1;
                         MyPlayer.Play();
                     }
