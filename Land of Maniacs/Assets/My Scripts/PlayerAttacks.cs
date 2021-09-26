@@ -46,150 +46,153 @@ public class PlayerAttacks : MonoBehaviour
         }
         if (AttackStamina > 3.0)
         {
-            if (SaveScript.HaveKnife == true)
+            if (SaveScript.InventoryOpen == false && SaveScript.OptionsOpen == false)
             {
-                if (Input.GetKeyDown(KeyCode.Mouse0))
+                if (SaveScript.HaveKnife == true)
                 {
-                    Anim.SetTrigger("KnifeLMB");
-                    AttackStamina -= AttackDrain;
-                }
-                if (Input.GetKeyDown(KeyCode.Mouse1))
-                {
-                    Anim.SetTrigger("KnifeRMB");
-                    AttackStamina -= AttackDrain;
-
-                }
-            }
-
-            if (SaveScript.HaveBat == true)
-            {
-                if (Input.GetKeyDown(KeyCode.Mouse0))
-                {
-                    Anim.SetTrigger("BatLMB");
-                    AttackStamina -= AttackDrain;
-
-                }
-                if (Input.GetKeyDown(KeyCode.Mouse1))
-                {
-                    Anim.SetTrigger("BatRMB");
-                    AttackStamina -= AttackDrain;
-
-                }
-            }
-
-            if (SaveScript.HaveAxe == true)
-            {
-                if (Input.GetKeyDown(KeyCode.Mouse0))
-                {
-                    Anim.SetTrigger("AxeLMB");
-                    AttackStamina -= AttackDrain;
-
-                }
-                if (Input.GetKeyDown(KeyCode.Mouse1))
-                {
-                    Anim.SetTrigger("AxeRMB");
-                    AttackStamina -= AttackDrain;
-
-                }
-            }
-
-            if (SaveScript.HaveGun == true)
-            {
-                
-                if (Input.GetKey(KeyCode.Mouse1))
-                {
-                    Anim.SetBool("AimGun", true);
-                    Crosshair.gameObject.SetActive(true);
-                    Pointer.gameObject.SetActive(false);
-
-                    if (SaveScript.Bullets > 0)
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
-                        if (Input.GetKeyDown(KeyCode.Mouse0)) //left mouse button
-                        {
-                            MyPlayer.clip = GunShotSound;
-                           // MyPlayer.Play();
-                        }
+                        Anim.SetTrigger("KnifeLMB");
+                        AttackStamina -= AttackDrain;
                     }
-                    if (SaveScript.Bullets <= 0)
+                    if (Input.GetKeyDown(KeyCode.Mouse1))
                     {
-                        if (Input.GetKeyDown(KeyCode.Mouse0)) //left mouse button
-                        {
-                            MyPlayer.clip = EmptyGunSound;
-                            MyPlayer.Play();
-                        }
+                        Anim.SetTrigger("KnifeRMB");
+                        AttackStamina -= AttackDrain;
+
                     }
-
-
-
                 }
-                if (Input.GetKeyUp(KeyCode.Mouse1))
-                {
-                    Crosshair.gameObject.SetActive(false);
-                    Pointer.gameObject.SetActive(true);
-                    Anim.SetBool("AimGun", false);
 
-                }
-                /*if (Input.GetKeyDown(KeyCode.Mouse0)) //left mouse button
+                if (SaveScript.HaveBat == true)
                 {
-                    MyPlayer.clip = GunShotSound;
-                    MyPlayer.Play();
-                }*/
-
-            }
-            if (SaveScript.HaveCrossbow == true)
-            {
-                if (Input.GetKeyDown(KeyCode.Mouse1))
-                {
-                    MyPlayer.clip = CrossbowAim;
-                    MyPlayer.Play();
-                }
-                if (Input.GetKey(KeyCode.Mouse1))
-                {
-                    Anim.SetBool("AimCrossbow", true);
-                    Crosshair.gameObject.SetActive(true);
-                    Pointer.gameObject.SetActive(false);
-
-                    if (SaveScript.Arrows > 0)
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
-                        if (Input.GetKeyDown(KeyCode.Mouse0)) //left mouse button
-                        {
-                            MyPlayer.clip = CrossbowFire;
-                            MyPlayer.Play();
-                        }
+                        Anim.SetTrigger("BatLMB");
+                        AttackStamina -= AttackDrain;
+
                     }
-                    if (SaveScript.Arrows <= 0)
+                    if (Input.GetKeyDown(KeyCode.Mouse1))
                     {
-                        if (Input.GetKeyDown(KeyCode.Mouse0)) //left mouse button
+                        Anim.SetTrigger("BatRMB");
+                        AttackStamina -= AttackDrain;
+
+                    }
+                }
+
+                if (SaveScript.HaveAxe == true)
+                {
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    {
+                        Anim.SetTrigger("AxeLMB");
+                        AttackStamina -= AttackDrain;
+
+                    }
+                    if (Input.GetKeyDown(KeyCode.Mouse1))
+                    {
+                        Anim.SetTrigger("AxeRMB");
+                        AttackStamina -= AttackDrain;
+
+                    }
+                }
+
+                if (SaveScript.HaveGun == true)
+                {
+
+                    if (Input.GetKey(KeyCode.Mouse1))
+                    {
+                        Anim.SetBool("AimGun", true);
+                        Crosshair.gameObject.SetActive(true);
+                        Pointer.gameObject.SetActive(false);
+
+                        if (SaveScript.Bullets > 0)
                         {
-                            MyPlayer.clip = EmptyGunSound;
-                            MyPlayer.Play();
+                            if (Input.GetKeyDown(KeyCode.Mouse0)) //left mouse button
+                            {
+                                MyPlayer.clip = GunShotSound;
+                                // MyPlayer.Play();
+                            }
                         }
+                        if (SaveScript.Bullets <= 0)
+                        {
+                            if (Input.GetKeyDown(KeyCode.Mouse0)) //left mouse button
+                            {
+                                MyPlayer.clip = EmptyGunSound;
+                                MyPlayer.Play();
+                            }
+                        }
+
+
+
+                    }
+                    if (Input.GetKeyUp(KeyCode.Mouse1))
+                    {
+                        Crosshair.gameObject.SetActive(false);
+                        Pointer.gameObject.SetActive(true);
+                        Anim.SetBool("AimGun", false);
+
+                    }
+                    /*if (Input.GetKeyDown(KeyCode.Mouse0)) //left mouse button
+                    {
+                        MyPlayer.clip = GunShotSound;
+                        MyPlayer.Play();
+                    }*/
+
+                }
+                if (SaveScript.HaveCrossbow == true)
+                {
+                    if (Input.GetKeyDown(KeyCode.Mouse1))
+                    {
+                        MyPlayer.clip = CrossbowAim;
+                        MyPlayer.Play();
+                    }
+                    if (Input.GetKey(KeyCode.Mouse1))
+                    {
+                        Anim.SetBool("AimCrossbow", true);
+                        Crosshair.gameObject.SetActive(true);
+                        Pointer.gameObject.SetActive(false);
+
+                        if (SaveScript.Arrows > 0)
+                        {
+                            if (Input.GetKeyDown(KeyCode.Mouse0)) //left mouse button
+                            {
+                                MyPlayer.clip = CrossbowFire;
+                                MyPlayer.Play();
+                            }
+                        }
+                        if (SaveScript.Arrows <= 0)
+                        {
+                            if (Input.GetKeyDown(KeyCode.Mouse0)) //left mouse button
+                            {
+                                MyPlayer.clip = EmptyGunSound;
+                                MyPlayer.Play();
+                            }
+                        }
+
+
+
+                    }
+                    if (Input.GetKeyUp(KeyCode.Mouse1))
+                    {
+                        Crosshair.gameObject.SetActive(false);
+                        Pointer.gameObject.SetActive(true);
+                        Anim.SetBool("AimCrossbow", false);
+
                     }
 
 
 
-                }
-                if (Input.GetKeyUp(KeyCode.Mouse1))
-                {
-                    Crosshair.gameObject.SetActive(false);
-                    Pointer.gameObject.SetActive(true);
-                    Anim.SetBool("AimCrossbow", false);
+
+
+
+
+
+                    /*if (Input.GetKeyDown(KeyCode.Mouse0)) //left mouse button
+                    {
+                        MyPlayer.clip = GunShotSound;
+                        MyPlayer.Play();
+                    }*/
 
                 }
-
-
-
-
-
-
-
-
-                /*if (Input.GetKeyDown(KeyCode.Mouse0)) //left mouse button
-                {
-                    MyPlayer.clip = GunShotSound;
-                    MyPlayer.Play();
-                }*/
-
             }
         }
         

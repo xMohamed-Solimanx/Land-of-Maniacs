@@ -28,7 +28,10 @@ public class SimpleShoot : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    GetComponent<Animator>().SetTrigger("Fire");
+                    if (SaveScript.InventoryOpen == false && SaveScript.OptionsOpen == false)
+                    {
+                        GetComponent<Animator>().SetTrigger("Fire");
+                    }
                 }
             }
         }

@@ -108,7 +108,7 @@ public class EnemyAttack : MonoBehaviour
                 if (DistanceToPlayer < AttackDistance - 0.5f)
                 {
                     Nav.isStopped = true;           //stop moving
-                                                     Debug.Log("I am attacking");
+                   // Debug.Log("I am attacking");
                     if (IHaveAxe == true)
                     {
                         Anim.SetInteger("State", 3);
@@ -192,6 +192,7 @@ public class EnemyAttack : MonoBehaviour
         ChaseMusic.gameObject.SetActive(false);
         CanRun = true;
         CheckTime = Random.Range(3, 15);
+
 
     }
 

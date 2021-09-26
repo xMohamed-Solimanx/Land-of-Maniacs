@@ -20,7 +20,7 @@ public class GunShotScript : MonoBehaviour
                         if (hit.transform.Find("Body"))
                         {
                             hit.transform.gameObject.GetComponentInChildren<EnemyDamage>().EnemyHealth -= Random.Range(30, 101);
-                            hit.transform.gameObject.GetComponent<Animator>().SetTrigger("BigReact");
+                            hit.transform.gameObject.GetComponent<Animator>().SetTrigger("SmallReact");
                             hit.transform.gameObject.GetComponentInChildren<EnemyAttack>().RunToPlayer = true;
                             Debug.Log("Shot enemy");
                         }

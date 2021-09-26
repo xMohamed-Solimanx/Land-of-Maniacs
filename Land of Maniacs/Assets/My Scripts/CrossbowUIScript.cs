@@ -19,19 +19,25 @@ public class CrossbowUIScript : MonoBehaviour
 
         if (SaveScript.HaveCrossbow)
         {
-            if (Input.GetKey(KeyCode.Mouse1))
+            if (SaveScript.InventoryOpen == false && SaveScript.OptionsOpen == false)
             {
-                if (Input.GetKeyDown(KeyCode.Mouse0))
-                {
-                    if (SaveScript.Arrows > 0)
-                    {
-                        SaveScript.Arrows -= 1;
-                        // BulletAmt.text = SaveScript.Bullets + "";
 
+
+                if (Input.GetKey(KeyCode.Mouse1))
+                {
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    {
+
+                        if (SaveScript.Arrows > 0)
+                        {
+                            SaveScript.Arrows -= 1;
+                            // BulletAmt.text = SaveScript.Bullets + "";
+
+                        }
                     }
                 }
             }
+
         }
-        
     }
 }

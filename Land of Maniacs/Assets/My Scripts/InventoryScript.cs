@@ -200,12 +200,15 @@ public class InventoryScript : MonoBehaviour
             {
                 OptionsMenu.gameObject.SetActive(true);
                 SaveScript.OptionsActive = true;
+                SaveScript.OptionsOpen = true;
 
             }
             else
             {
                 OptionsMenu.gameObject.SetActive(false);
                 SaveScript.OptionsActive = false;
+                SaveScript.OptionsOpen = false;
+
                 if (SaveScript.InventoryActive == true)
                 {
                     Cursor.visible = true;
@@ -223,7 +226,8 @@ public class InventoryScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             if (SaveScript.InventoryActive == false)
-            { 
+            {
+                SaveScript.InventoryOpen = true;
 
                 InventoryPanel.gameObject.SetActive(true);
                 LightSettingsPlayer.InventoryOn = true;
@@ -254,6 +258,8 @@ public class InventoryScript : MonoBehaviour
             }
             else
             {
+                SaveScript.InventoryOpen = false;
+
                 InventoryPanel.gameObject.SetActive(false);
                 LightSettingsPlayer.InventoryOn = false;
                 SaveScript.InventoryActive = false;

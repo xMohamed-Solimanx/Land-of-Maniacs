@@ -16,8 +16,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private float m_RunSpeed;
 
         private float SetRunSpeed;
-        [SerializeField] float Stamina = 10.0f;
-        [SerializeField] float MaxStamina = 10.0f;
+        [SerializeField] float Stamina = 15f;
+        [SerializeField] float MaxStamina = 15f;
         [SerializeField] int DecayRate = 1;
         [SerializeField] float RefillRate = 0.5f;
         [SerializeField] GameObject LightBreathing;

@@ -24,6 +24,8 @@ public class SaveScript : MonoBehaviour
     public static int CrossbowAmmo = 0;
     public static bool InventoryActive = false;
     public static bool OptionsActive = false;
+    public static bool InventoryOpen = false;
+    public static bool OptionsOpen = false;
 
 
     public static bool HaveKnife = false;
@@ -166,6 +168,7 @@ public class SaveScript : MonoBehaviour
             HandgunAmmo = 0;
             CrossbowAmmo = 0;
             InventoryActive = false;
+            OptionsActive = false;
 
             HaveKnife = false;
             HaveBat = false;
@@ -251,6 +254,8 @@ public class SaveScript : MonoBehaviour
                 RoomKey = true;
             }
             SavedGame = false;
+            InventoryOpen = false;
+            OptionsOpen = false;
             
 
         }

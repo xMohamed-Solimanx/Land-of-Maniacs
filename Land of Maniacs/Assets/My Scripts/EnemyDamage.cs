@@ -86,8 +86,9 @@ public class EnemyDamage : MonoBehaviour
             StabPlayer.Play();
             Destroy(other.gameObject);
             Anim.SetTrigger("BigReact");
+            Debug.Log("Crossbow");
 
-           // this.transform.gameObject.GetComponentInChildren<EnemyAttack>().RunToPlayer = true;
+            // this.transform.gameObject.GetComponentInChildren<EnemyAttack>().RunToPlayer = true;
         }
     }
 
