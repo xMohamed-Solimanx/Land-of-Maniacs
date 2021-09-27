@@ -1537,6 +1537,7 @@ MonoBehaviour:
   BloodSplatKnife: {fileID: 0}
   BloodSplatAxe: {fileID: 0}
   BloodSplatBat: {fileID: 0}
+  IsBoss: 0
 --- !u!82 &6889768560502901133
 AudioSource:
   m_ObjectHideFlags: 0

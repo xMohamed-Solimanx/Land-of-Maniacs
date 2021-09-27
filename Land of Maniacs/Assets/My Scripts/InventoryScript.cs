@@ -194,6 +194,10 @@ public class InventoryScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         if (Input.GetKeyDown(KeyCode.O))
         {
             if(SaveScript.OptionsActive == false)
@@ -606,7 +610,7 @@ public class InventoryScript : MonoBehaviour
             MyPlayer.clip = AppleBite;
             MyPlayer.Play();
             SaveScript.Apples -= 1;
-            SaveScript.PlayerHealth += 10;
+            SaveScript.PlayerHealth += 20;
             SaveScript.HealthChanged = true;
         }
 

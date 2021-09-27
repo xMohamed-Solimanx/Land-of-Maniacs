@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HorrorScene.unity
     guid: c8d43cd04e7bf684b9e563d49282540b
+  - enabled: 1
+    path: Assets/Scenes/GameVictory.unity
+    guid: 615f0498e2c3b3048afab7eded9a4be8
   m_configObjects: {}

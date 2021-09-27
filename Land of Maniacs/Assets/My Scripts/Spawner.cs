@@ -13,7 +13,7 @@ public class Spawner : MonoBehaviour
 
     private bool CanSpawn = true;
 
-    [SerializeField] bool Retriggerable;
+   // [SerializeField] bool Retriggerable;
 
 
     private void OnTriggerEnter(Collider other)
@@ -41,10 +41,10 @@ public class Spawner : MonoBehaviour
                         SaveScript.EnemiesCurrent++;
 
 
-                        if (Retriggerable == true)
-                        {
-                            StartCoroutine(WaitToSpawn()); // Time to wait unitl cube can spawn enemies again
-                        }
+                      //  if (Retriggerable == true)
+                      //  {
+                       //     StartCoroutine(WaitToSpawn()); // Time to wait unitl cube can spawn enemies again
+                      //  }
 
                     }
                 }
@@ -54,10 +54,10 @@ public class Spawner : MonoBehaviour
     }
 
 
-    IEnumerator WaitToSpawn()
-    {
-        yield return new WaitForSeconds(2f);
-        CanSpawn = true;
-    }
+   // IEnumerator WaitToSpawn()
+   // {
+   //     yield return new WaitForSeconds(2f);
+   //     CanSpawn = true;
+   // }
 
 }

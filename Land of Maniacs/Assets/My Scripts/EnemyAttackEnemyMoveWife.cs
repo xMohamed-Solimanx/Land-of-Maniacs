@@ -13,18 +13,18 @@ public class EnemyAttackEnemyMoveWife : MonoBehaviour
     private bool Blocked = false;
     public  bool RunToPlayer = false;
     private float DistanceToPlayer;
-    private bool IsChecking = true;
-    private int FailedChecks = 0;
+    //private bool IsChecking = true;
+   // private int FailedChecks = 0;
 
     [SerializeField] Transform Player;
     [SerializeField] GameObject Enemy;
     [SerializeField] float MaxRange = 35.0f;
-    [SerializeField] int MaxChecks = 3;
+   // [SerializeField] int MaxChecks = 3;
     [SerializeField] float ChaseSpeed = 8.5f;
     [SerializeField] float WalkSpeed = 1.6f;
     [SerializeField] float AttackDistance = 3f;
     [SerializeField] float AttackRotateSpeed = 2.0f;
-    [SerializeField] float CheckTime = 3.0f;
+   // [SerializeField] float CheckTime = 3.0f;
 
     //[SerializeField] GameObject ChaseMusic;
     //[SerializeField] GameObject HurtUI;
@@ -43,7 +43,7 @@ public class EnemyAttackEnemyMoveWife : MonoBehaviour
     void Start()
     {
         Nav = GetComponentInParent<NavMeshAgent>();
-        CheckTime = Random.Range(3, 15);
+       // CheckTime = 1;
        // ChaseMusic.gameObject.SetActive(false);
 
         // StartCoroutine(StartElements()); // Used to make sure that savescript is loaded first in the fpscontroller so then we can assign the targets to enemy move
@@ -64,31 +64,31 @@ public class EnemyAttackEnemyMoveWife : MonoBehaviour
             DistanceToPlayer = Vector3.Distance(Player.position, Enemy.transform.position);
             if (DistanceToPlayer < MaxRange)
             {
-                if (IsChecking == true)
-                {
-                    IsChecking = false;
+               // if (IsChecking == true)
+              //  {
+                 //   IsChecking = false;
 
                     Blocked = NavMesh.Raycast(transform.position, Player.position, out hit, NavMesh.AllAreas);
 
                     if (Blocked == false) // can see the player
                     {
-                        // Debug.Log("I can see the player");
+                         Debug.Log("I can see the player");
                         RunToPlayer = true;
-                        FailedChecks = 0;
+                       // FailedChecks = 0;
                     }
                     if (Blocked == true) // can't see the player
                     {
                         //Debug.Log("Where did the player go?!");
                         RunToPlayer = false;
                         Anim.SetInteger("State", 1);
-                        FailedChecks++;
+                       // FailedChecks++;
                        // ChaseMusic.gameObject.SetActive(false);
-                        Nav.speed = WalkSpeed;
+                       // Nav.speed = WalkSpeed;
 
 
-                }
+               // }
 
-                StartCoroutine(TimedCheck());
+               // StartCoroutine(TimedCheck());
 
 
                 }
@@ -96,7 +96,7 @@ public class EnemyAttackEnemyMoveWife : MonoBehaviour
 
             if (RunToPlayer)
             {
-                Enemy.GetComponent<EnemyMove>().enabled = false;
+               // Enemy.GetComponent<EnemyMove>().enabled = false;
                // if (EnemyDamageZone.GetComponent<EnemyDamage>().HasDied == false) // if false, play the chase music
               //  {
               //      ChaseMusic.gameObject.SetActive(true);
@@ -109,11 +109,14 @@ public class EnemyAttackEnemyMoveWife : MonoBehaviour
                     Nav.acceleration = 24;
                     Nav.SetDestination(Player.position);
                     Nav.speed = ChaseSpeed;
-                   // HurtUI.gameObject.SetActive(false);
+                    SaveScript.WifeFollowing = false;
 
-                }
-                if (DistanceToPlayer < AttackDistance - 0.5f)
+                // HurtUI.gameObject.SetActive(false);
+
+            }
+            if (DistanceToPlayer < AttackDistance - 0.5f)
                 {
+                    SaveScript.WifeFollowing = true;
                     Nav.isStopped = true;           //stop moving
                     Anim.SetInteger("State", 1);
 
@@ -140,9 +143,10 @@ public class EnemyAttackEnemyMoveWife : MonoBehaviour
             }
             else if (RunToPlayer == false)
             {
-                 Nav.speed = WalkSpeed;
+            // Nav.speed = WalkSpeed;
+                SaveScript.WifeFollowing = false ;
 
-                 Nav.isStopped = true;
+            Nav.isStopped = true;
             }
        // }
 
@@ -176,7 +180,7 @@ public class EnemyAttackEnemyMoveWife : MonoBehaviour
         }
     }*/
 
-    IEnumerator TimedCheck()
+   /* IEnumerator TimedCheck()
     {
         yield return new WaitForSeconds(CheckTime);
         IsChecking = true;
@@ -189,7 +193,7 @@ public class EnemyAttackEnemyMoveWife : MonoBehaviour
             FailedChecks = 0;
            // ChaseMusic.gameObject.SetActive(false);
         }
-    }
+    }*/
 
 
 

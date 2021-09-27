@@ -2147,7 +2147,7 @@ MonoBehaviour:
   Enemy: {fileID: 3855635001230647018}
   MaxRange: 35
   MaxChecks: 2
-  ChaseSpeed: 8.5
+  ChaseSpeed: 9.5
   WalkSpeed: 1.6
   AttackDistance: 2.5
   AttackRotateSpeed: 2
@@ -2782,6 +2782,7 @@ MonoBehaviour:
   BloodSplatKnife: {fileID: 0}
   BloodSplatAxe: {fileID: 0}
   BloodSplatBat: {fileID: 0}
+  IsBoss: 0
 --- !u!82 &3855635002818706998
 AudioSource:
   m_ObjectHideFlags: 0

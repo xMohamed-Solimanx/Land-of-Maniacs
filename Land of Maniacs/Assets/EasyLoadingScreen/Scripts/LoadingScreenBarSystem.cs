@@ -37,6 +37,10 @@ public class LoadingScreenBarSystem : MonoBehaviour {
         SaveScript.NewGame = true; //to force to reset to a new game
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
     // Used to try. Delete the comment lines (25 and 36)
     /*
     public void Update()

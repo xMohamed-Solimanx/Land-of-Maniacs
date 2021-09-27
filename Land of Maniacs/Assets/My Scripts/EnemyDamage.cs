@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyDamage : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class EnemyDamage : MonoBehaviour
 
     private bool DamageOn = false; //used to delay the Update() untill the Coroutine (StartElements) is finished
 
+    [SerializeField] bool IsBoss;
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,19 +38,49 @@ public class EnemyDamage : MonoBehaviour
         if (DamageOn == true)
         {
 
-
-            if (EnemyHealth <= 0)
+            if (IsBoss == false)
             {
-                if (HasDied == false)
+                if (EnemyHealth <= 0)
                 {
-                    Anim.SetTrigger("Death");
-                    HasDied = true;
-                    Anim.SetBool("IsDead", true);
+                    if (HasDied == false)
+                    {
+                        Anim.SetTrigger("Death");
+                        HasDied = true;
+                        Anim.SetBool("IsDead", true);
 
-                    Destroy(this.transform.parent.gameObject, 20f);
-                    SaveScript.EnemiesOnScreen--;
+                        Destroy(this.transform.parent.gameObject, 10f);
+                        SaveScript.EnemiesOnScreen--;
 
 
+                    }
+                }
+            }
+
+            if (IsBoss == true)
+            {
+                if (EnemyHealth <= 0)
+                {
+                    if (HasDied == false)
+                    {
+                        Anim.SetTrigger("BossDead");
+                        HasDied = true;
+                        // transform.gameObject.GetComponentInChildren<BossAttack>().enabled = false;
+                        EnemyObject.gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
+                        EnemyObject.gameObject.GetComponentInChildren<BossAttack>().enabled = false;
+                        EnemyObject.gameObject.GetComponentInChildren<BossShoots>().enabled = false;
+                        EnemyObject.gameObject.GetComponentInChildren<EnemyDamage>().enabled = false;
+                        EnemyObject.gameObject.GetComponentInChildren<BossAttack>().ChaseMusic.SetActive(false);
+                        EnemyObject.gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
+                        EnemyObject.gameObject.GetComponentInChildren<SimpleShootBoss>().enabled = false;       //I then remembered i can access these components directly from the death animation
+
+                        // Debug.Log("SimpleShootBoss Disabled");
+
+
+
+                        // Destroy(this.transform.parent.gameObject, 4f);
+
+                        // StartCoroutine(LoadFinalScene());
+                    }
                 }
             }
         }
@@ -57,7 +90,7 @@ public class EnemyDamage : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PlayerKnife"))
         {
-            EnemyHealth -= 10;
+            EnemyHealth -= 25;
             MyPlayer.Play();
             StabPlayer.Play();
             BloodSplatKnife.gameObject.SetActive(true);
@@ -65,7 +98,7 @@ public class EnemyDamage : MonoBehaviour
         }
         if (other.gameObject.CompareTag("PlayerAxe"))
         {
-            EnemyHealth -= 20;
+            EnemyHealth -= 30;
             MyPlayer.Play();
             StabPlayer.Play();
             BloodSplatAxe.gameObject.SetActive(true);
@@ -73,7 +106,7 @@ public class EnemyDamage : MonoBehaviour
         }
         if (other.gameObject.CompareTag("PlayerBat"))
         {
-            EnemyHealth -= 15;
+            EnemyHealth -= 20;
             MyPlayer.Play();
             StabPlayer.Play();
             BloodSplatBat.gameObject.SetActive(true);
@@ -112,5 +145,10 @@ public class EnemyDamage : MonoBehaviour
 
     }
 
+   // IEnumerator LoadFinalScene()
+  //  {
+   //     yield return new WaitForSeconds(6f);
+   //     SceneManager.LoadScene(4);
+   // }
 
 }

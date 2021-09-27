@@ -45,6 +45,11 @@ public class EnemyAttackSpawners : MonoBehaviour
         Nav = GetComponentInParent<NavMeshAgent>();
         StartCoroutine(StartElements()); // Used to make sure that savescript is loaded first in the fpscontroller so then we can assign the targets to enemy move
 
+        //StartCoroutine(StartWalking());
+        
+
+        
+
     }
 
     // Update is called once per frame
@@ -191,13 +196,21 @@ public class EnemyAttackSpawners : MonoBehaviour
         HurtUI = SaveScript.HurtScreen;
         ChaseMusic.gameObject.SetActive(false);
         CanRun = true;
-        CheckTime = Random.Range(3, 15);
+        CheckTime = Random.Range(3, 6);
         Anim.SetInteger("State", 1);
 
 
     }
 
-
+   /* IEnumerator StartWalking()
+    {
+        yield return new WaitForSeconds(1f);
+        RunToPlayer = true;
+        yield return new WaitForSeconds(0.01f);
+        RunToPlayer = false;
+        ChaseMusic.gameObject.SetActive(false);
+        Nav.speed = WalkSpeed;
+    }*/
 
 
 }

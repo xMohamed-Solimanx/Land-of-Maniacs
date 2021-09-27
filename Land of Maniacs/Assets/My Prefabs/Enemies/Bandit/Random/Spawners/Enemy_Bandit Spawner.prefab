@@ -137,6 +137,7 @@ MonoBehaviour:
   BloodSplatKnife: {fileID: 0}
   BloodSplatAxe: {fileID: 0}
   BloodSplatBat: {fileID: 0}
+  IsBoss: 0
 --- !u!82 &8885283483248953920
 AudioSource:
   m_ObjectHideFlags: 0
@@ -305,9 +306,9 @@ MonoBehaviour:
   Enemy: {fileID: 295132185209730987}
   MaxRange: 35
   MaxChecks: 3
-  ChaseSpeed: 8.5
+  ChaseSpeed: 9.5
   WalkSpeed: 1.6
-  AttackDistance: 3
+  AttackDistance: 2.5
   AttackRotateSpeed: 2
   CheckTime: 3
   ChaseMusic: {fileID: 0}
@@ -329,7 +330,7 @@ GameObject:
   - component: {fileID: 295132185209730980}
   - component: {fileID: 2141009199569542261}
   - component: {fileID: 6322530754536377265}
-  - component: {fileID: 4009134202184442085}
+  - component: {fileID: 8361063196352249672}
   m_Layer: 9
   m_Name: Enemy_Bandit Spawner
   m_TagString: Enemy
@@ -345,7 +346,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295132185209730987}
   m_LocalRotation: {x: -0, y: -0.96254283, z: 0, w: -0.27112964}
-  m_LocalPosition: {x: 609.5562, y: 16.549, z: 363.49643}
+  m_LocalPosition: {x: 382.60037, y: 23.794407, z: 713.28467}
   m_LocalScale: {x: 1.2999997, y: 1.3, z: 1.2999997}
   m_Children:
   - {fileID: 2661637253834113289}
@@ -434,35 +435,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyNumber: 3
---- !u!114 &4009134202184442085
+--- !u!114 &8361063196352249672
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295132185209730987}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db47675637ae7f944a34708d50ca7c9e, type: 3}
+  m_Script: {fileID: 11500000, guid: 4857dd1c713674746b8476e388f1b25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Anim: {fileID: 0}
-  RunToPlayer: 0
-  Player: {fileID: 0}
-  Enemy: {fileID: 0}
-  MaxRange: 35
-  MaxChecks: 3
-  ChaseSpeed: 8.5
-  WalkSpeed: 1.6
-  AttackDistance: 3
-  AttackRotateSpeed: 2
-  CheckTime: 3
-  ChaseMusic: {fileID: 0}
-  HurtUI: {fileID: 0}
-  EnemyDamageZone: {fileID: 0}
-  IHaveKnife: 0
-  IHaveBat: 0
-  IHaveAxe: 0
+  Target1: {fileID: 0}
+  Target2: {fileID: 0}
+  Target3: {fileID: 0}
+  Target4: {fileID: 0}
+  Target5: {fileID: 0}
+  Target6: {fileID: 0}
+  Target7: {fileID: 0}
+  Target8: {fileID: 0}
+  Target9: {fileID: 0}
+  WaitTime: 2
+  MaxTargets: 9
+  StopDistance: 2
 --- !u!1 &303111944643651059
 GameObject:
   m_ObjectHideFlags: 0

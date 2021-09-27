@@ -191,7 +191,7 @@ public class EnemyAttack : MonoBehaviour
         HurtUI = SaveScript.HurtScreen;
         ChaseMusic.gameObject.SetActive(false);
         CanRun = true;
-        CheckTime = Random.Range(3, 15);
+        CheckTime = Random.Range(3, 6);
 
 
     }

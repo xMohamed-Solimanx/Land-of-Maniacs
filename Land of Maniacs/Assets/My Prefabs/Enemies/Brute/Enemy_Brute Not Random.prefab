@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d5c88d25e371241a3e6443c062b657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponDamage: 1
+  WeaponDamage: 5
   HurtAnim: {fileID: 0}
   MyPlayer: {fileID: 0}
   FPSArms: {fileID: 0}
@@ -1465,6 +1465,7 @@ MonoBehaviour:
   BloodSplatKnife: {fileID: 8290742372979741305, guid: 230087d77904fb2488c8df3951f0a73f, type: 3}
   BloodSplatAxe: {fileID: 8290742372979741305, guid: 230087d77904fb2488c8df3951f0a73f, type: 3}
   BloodSplatBat: {fileID: 8290742372979741305, guid: 230087d77904fb2488c8df3951f0a73f, type: 3}
+  IsBoss: 0
 --- !u!82 &8779777982081471300
 AudioSource:
   m_ObjectHideFlags: 0

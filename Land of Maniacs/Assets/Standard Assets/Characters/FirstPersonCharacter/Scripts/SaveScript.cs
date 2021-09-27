@@ -6,7 +6,7 @@ public class SaveScript : MonoBehaviour
 {
     public static int PlayerHealth = 100;       //to be available for other scripts
     public static bool HealthChanged = false;
-    public static float BatteryPower = 1.0f;
+    public static float BatteryPower = 0.5f;
     public static bool BatteryRefill = false;
     public static bool FlashLightOn = false;
     public static bool NVLightOn = false;
@@ -26,7 +26,7 @@ public class SaveScript : MonoBehaviour
     public static bool OptionsActive = false;
     public static bool InventoryOpen = false;
     public static bool OptionsOpen = false;
-
+    public static bool WifeFollowing = false;
 
     public static bool HaveKnife = false;
     public static bool HaveBat = false;
@@ -35,7 +35,7 @@ public class SaveScript : MonoBehaviour
     public static bool HaveCrossbow = false;
 
     public static int Bullets = 12;
-    public static int Arrows = 10;
+    public static int Arrows = 6;
 
     public static bool NewGame = false;
     public static bool SavedGame = false;
@@ -55,11 +55,18 @@ public class SaveScript : MonoBehaviour
     public static GameObject Chase;
     public static GameObject HurtScreen;
 
+    public static GameObject HouseKeyy;
+    //public static GameObject RoomKeyy;
+
+
+
+
     //      EnemyDamage     //
     public static AudioSource StabSound;
     public static  GameObject SplatKnife;
     public static  GameObject SplatBat;
     public static  GameObject SplatAxe;
+
     //                      //
 
     //      WeaponsCube     //
@@ -68,11 +75,11 @@ public class SaveScript : MonoBehaviour
     public static GameObject Arms;
     //                      //
 
-    public static int MaxEnemiesOnScreen = 6;
+    public static int MaxEnemiesOnScreen = 15;
     public static int EnemiesOnScreen = 0; // to keep track, it will be incremented and not greater than max.
-    public static int MaxEnemiesInGame = 100;
+    public static int MaxEnemiesInGame = 300;
     public static int EnemiesCurrent = 0;
-    public static int ApplesLeft = 10;
+    public static int ApplesLeft = 12;
     public static int HandgunAmmoLeft = 4;
     public static int BatteriesLeft = 10;
     public static int CrossbowAmmoLeft = 4;
@@ -96,6 +103,11 @@ public class SaveScript : MonoBehaviour
     [SerializeField] Transform _Target7;
     [SerializeField] Transform _Target8;
     [SerializeField] Transform _Target9;
+
+    [SerializeField] GameObject HouseKeyX;
+   // [SerializeField] GameObject RoomKeyX; //boss doesn't spawn LOL, so we don't need to load when spawn
+
+
 
     [SerializeField] Transform PlayerPrefab;
     [SerializeField] GameObject ChaseMusic;
@@ -141,6 +153,9 @@ public class SaveScript : MonoBehaviour
         Hurt = HurtAnim;
         AudioP = MyPlayer;
         Arms = FPSArms;
+
+        HouseKeyy = HouseKeyX;
+       // RoomKeyy = RoomKeyX;
 
 
 

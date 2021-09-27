@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CrossbowAmmoPickup : MonoBehaviour
+public class BatteryPower : MonoBehaviour
 {
 
     [SerializeField] Image BatteryUI;
@@ -22,6 +22,8 @@ public class CrossbowAmmoPickup : MonoBehaviour
         {
             SaveScript.BatteryRefill = false;
             BatteryUI.fillAmount = 1.0f;
+            Power = BatteryUI.fillAmount;
+            SaveScript.BatteryPower = Power;
         }
         if (SaveScript.FlashLightOn == true || SaveScript.NVLightOn == true)
         {
