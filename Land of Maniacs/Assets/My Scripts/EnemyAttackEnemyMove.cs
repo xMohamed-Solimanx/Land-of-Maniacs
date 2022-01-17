@@ -43,7 +43,7 @@ public class EnemyAttackEnemyMove : MonoBehaviour
     void Start()
     {
         Nav = GetComponentInParent<NavMeshAgent>();
-        CheckTime = Random.Range(3, 15);
+        CheckTime = Random.Range(2, 5);
         ChaseMusic.gameObject.SetActive(false);
 
         // StartCoroutine(StartElements()); // Used to make sure that savescript is loaded first in the fpscontroller so then we can assign the targets to enemy move

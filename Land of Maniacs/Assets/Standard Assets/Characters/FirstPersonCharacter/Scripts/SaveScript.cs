@@ -192,7 +192,7 @@ public class SaveScript : MonoBehaviour
             HaveCrossbow = false;
 
             Bullets = 12;
-            Arrows = 10;
+            Arrows = 6;
 
             NewGame = false;
             ApplesLeft = 10;

@@ -22,6 +22,8 @@ public class EnemyDamage : MonoBehaviour
 
     [SerializeField] bool IsBoss;
 
+    private bool CrossbowDamage = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +74,8 @@ public class EnemyDamage : MonoBehaviour
                         EnemyObject.gameObject.GetComponentInChildren<BossAttack>().ChaseMusic.SetActive(false);
                         EnemyObject.gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
                         EnemyObject.gameObject.GetComponentInChildren<SimpleShootBoss>().enabled = false;       //I then remembered i can access these components directly from the death animation
+                        Destroy(this.transform.parent.gameObject, 5f);
+
 
                         // Debug.Log("SimpleShootBoss Disabled");
 
@@ -114,17 +118,19 @@ public class EnemyDamage : MonoBehaviour
         }
         if (other.gameObject.CompareTag("PlayerCrossbow"))
         {
-            EnemyHealth -= 50;
-            MyPlayer.Play();
-            StabPlayer.Play();
-            Destroy(other.gameObject);
-            Anim.SetTrigger("BigReact");
-            Debug.Log("Crossbow");
+            if (CrossbowDamage == false)
+            {
+                CrossbowDamage = true;
+                EnemyHealth -= 50;
+                StartCoroutine(CrossbowReset());
+                MyPlayer.Play();
+                StabPlayer.Play();
+                Destroy(other.gameObject, 0.5f);
+                Debug.Log("Crossbow");
+            }
 
-            // this.transform.gameObject.GetComponentInChildren<EnemyAttack>().RunToPlayer = true;
         }
     }
-
 
 
 
@@ -143,6 +149,13 @@ public class EnemyDamage : MonoBehaviour
 
         DamageOn = true;
 
+    }
+
+    IEnumerator CrossbowReset()
+    {
+        yield return new WaitForSeconds(0.6f);
+        CrossbowDamage = false;
+        Debug.Log("Crossbow is now false");
     }
 
    // IEnumerator LoadFinalScene()
